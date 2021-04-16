@@ -1,3 +1,5 @@
+-- 검색 요구 6번에 대한 처리를 위한 SQL문.
+-- 학과명이 'Pol. Sci.' 이거나 'Comp. Sci.' 인 교수들의 연봉을 null 값으로 바꿈.
 update instructor
 set salary = null
 where dept_name = 'Pol. Sci.' or dept_name = 'Comp. Sci.'
@@ -62,17 +64,16 @@ where i_id = ID
 group by i_id
 having count(s_id) >= 50
 
--- 10. 학년도, 강의실(building, room_number) 기준으로 해당 학년도, 강의실에서 진행된 강좌에 참여한 학생 수를 검색. --> 미완
+-- 10. 학년도, 강의실(building, room_number) 기준으로 해당 학년도, 강의실에서 진행된 강좌에 참여한 학생 수를 검색
 select * from section order by course_id
-select * from takes order by course_id
 
-select takes.year, building, room_number, count(ID) as std_cnt, takes.course_id, takes.sec_id
+select takes.year, takes.semester, building, room_number, count(distinct ID) as std_cnt, takes.course_id, takes.sec_id
 from section, takes
-where (takes.course_id = section.course_id) and ()
-group by takes.year, building, room_number, takes.course_id, takes.sec_id
+where (takes.course_id = section.course_id) and (takes.semester = section.semester) and (section.sec_id = takes.sec_id)
+group by takes.year, building, room_number, takes.course_id, takes.sec_id, takes.semester
 order by takes.course_id
 
-select course_id, year, semester, sec_id, count(ID) as std_cnt
+select year, semester, count(ID) as std_cnt, course_id, sec_id
 from takes
 group by course_id, year, semester, sec_id
-order by course_id
+order by course_id asc
