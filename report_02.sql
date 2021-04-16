@@ -4,15 +4,15 @@ update instructor
 set salary = null
 where dept_name = 'Pol. Sci.' or dept_name = 'Comp. Sci.'
 
+select * from student order by name
+
 -- 1. Comp. Sci. 학과에 소속된 어떤 학생보다 많은 학점을 이수한 학생의 이름을 검색.
--- tot_cred 는 필요없는 항목.
--- dept_name 도 필요없는 항목
-select distinct S1.name, S1.dept_name, S1.tot_cred
+-- distinct name 의 경우, 동명이인이 삭제되는 문제점이 존재함.
+select distinct S1.ID, S1.name, S1.dept_name, S1.tot_cred
 from student as S1, student as S2
 where (S1.tot_cred > S2.tot_cred) and (S2.dept_name = 'Comp. Sci.')
 
 -- 2. Comp. Sci. 학과에 소속된 어떤 학생보다 많은 학점을 이수한 학생들 가운데 Comp. Sci. 학과에 소속되지 않은 학생들의 수를 학과별로 검색.
--- dept_name은 필요 없는 항목
 select S1.dept_name, count(distinct S1.ID) as student_cnt
 from student as S1, student as S2
 where (S1.tot_cred > S2.tot_cred) and (S2.dept_name = 'Comp. Sci.')
