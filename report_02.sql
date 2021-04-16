@@ -5,11 +5,14 @@ set salary = null
 where dept_name = 'Pol. Sci.' or dept_name = 'Comp. Sci.'
 
 -- 1. Comp. Sci. 학과에 소속된 어떤 학생보다 많은 학점을 이수한 학생의 이름을 검색.
+-- tot_cred 는 필요없는 항목.
+-- dept_name 도 필요없는 항목
 select distinct S1.name, S1.dept_name, S1.tot_cred
 from student as S1, student as S2
 where (S1.tot_cred > S2.tot_cred) and (S2.dept_name = 'Comp. Sci.')
 
 -- 2. Comp. Sci. 학과에 소속된 어떤 학생보다 많은 학점을 이수한 학생들 가운데 Comp. Sci. 학과에 소속되지 않은 학생들의 수를 학과별로 검색.
+-- dept_name은 필요 없는 항목
 select S1.dept_name, count(distinct S1.ID) as student_cnt
 from student as S1, student as S2
 where (S1.tot_cred > S2.tot_cred) and (S2.dept_name = 'Comp. Sci.')
@@ -45,7 +48,7 @@ group by dept_name
 -- 7. 학년도, 학기 기준으로 수강신청하여 이수한 학생 수를 검색
 -- (수강 신청 후 아직 이수완료하지 않은 경우 grade는 null을 가짐. grade 가 'F'인 경우 해당 강좌를 이수하지 않은 것이 됨.)
 -- 이거 시발 왜 F 받은새끼가 없어
-select count(distinct ID) as std_cnt, year, semester
+select year, semester, count(distinct ID) as std_cnt
 from takes
 where (grade is not null) and (grade != 'F')
 group by year, semester
@@ -66,13 +69,13 @@ having count(s_id) >= 50
 
 -- 10. 학년도, 강의실(building, room_number) 기준으로 해당 학년도, 강의실에서 진행된 강좌에 참여한 학생 수를 검색
 select * from section order by course_id
-
+-- semester, course_id, sec_id 필요 없는 항목
 select takes.year, takes.semester, building, room_number, count(distinct ID) as std_cnt, takes.course_id, takes.sec_id
 from section, takes
 where (takes.course_id = section.course_id) and (takes.semester = section.semester) and (section.sec_id = takes.sec_id)
 group by takes.year, building, room_number, takes.course_id, takes.sec_id, takes.semester
 order by takes.course_id
-
+-- 
 select year, semester, count(ID) as std_cnt, course_id, sec_id
 from takes
 group by course_id, year, semester, sec_id
