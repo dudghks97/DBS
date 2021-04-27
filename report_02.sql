@@ -8,14 +8,14 @@ select * from student order by name
 
 -- 1. Comp. Sci. 학과에 소속된 어떤 학생보다 많은 학점을 이수한 학생의 이름을 검색.
 -- distinct name 의 경우, 동명이인이 삭제되는 문제점이 존재함.
-select distinct S1.ID, S1.name, S1.dept_name, S1.tot_cred
+select S1.name
 from student as S1, student as S2
-where (S1.tot_cred > S2.tot_cred) and (S2.dept_name = 'Comp. Sci.')
+where (S1.tot_cred > S2.tot_cred) and (S2.dept_name = 'Comp. Sci.') and S2.name = 'Kurt'
 
 -- 2. Comp. Sci. 학과에 소속된 어떤 학생보다 많은 학점을 이수한 학생들 가운데 Comp. Sci. 학과에 소속되지 않은 학생들의 수를 학과별로 검색.
 select S1.dept_name, count(distinct S1.ID) as student_cnt
 from student as S1, student as S2
-where (S1.tot_cred > S2.tot_cred) and (S2.dept_name = 'Comp. Sci.')
+where (S1.tot_cred > S2.tot_cred) and (S2.dept_name = 'Comp. Sci.') and S2.name = 'Kurt'
 group by S1.dept_name
 having S1.dept_name != 'Comp. Sci.'
 
