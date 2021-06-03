@@ -1,0 +1,54 @@
+구글에 sql server 2019 express 검색
+마이크로소프트 페이지 들어가서
+
+Express 다운로드
+SSMS 다운로드
+인증 : Windows 인증으로 해야함
+
+1. DB 생성 : LargeDB, SmallDB
+
+새 데이터베이스 클릭
+다 디폴트로 하고 생성하면됨
+이름 : LargeDB
+
+시스템 DB
+DB 스냅샷
+- 위 두 폴더는 절대로 건드리면 안됨
+
+하나 더 새로 만들어
+이름 : SmallDB
+DB 만들고나서 초기에 생성되어있는 것들은 절대로 건드려서는 안됨
+
+2. Table 생성
+DDL.sql 파일을 사용해서 테이블 생성
+DDL+drop 파일은 나중에 설명해주심
+
+새 쿼리 -> sql 입력 가능
+좌측 상단에서 DB 선택 필수
+그 다음 드래그해서 드롭하면됨
+3. Table에 데이터 입력
+다음주 강의에서 진행 예정
+
+4. SQL 실습
+
+
+
+SQL -> 언어
+	SQL Server Management Studio : SSMS -> DB 엔진을 사용하기 편리하게 해주는 환경 제공
+						SQL Server 2019 Express : DB Engine
+Java + SQL
+
+
+
+
+Transaction : all or nothing <-- atomicity(원자성)
+
+ALL ----> Commit
+Nothing ----> Rollback
+Durability : 영속성 -> 삭제 이후에 되돌리기가 힘듦.
+대부분의 DBMS : Auto Commit 기능이 default로 ON 되어있음.
+-> 하나의 문장 == 하나의 트랜잭션
+
+행을 드래그해서 블록단위로도 실행이 가능함
+
+DB 파일 drag & drop 한 후 좌측 상단에서 DB 선택 후 실행(f5)를 누르면 DB 가 생성됨.
