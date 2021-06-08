@@ -1,8 +1,19 @@
 -- 문제1 질의문
-select *
+select distinct ID, title
 from teaches, course
 where teaches.course_id = course.course_id
 
+select distinct *
+from teaches, course
+where teaches.course_id = course.course_id and ID = 22591
+
+select distinct title
+from teaches, course
+where teaches.course_id = course.course_id and ID = 16453
+
+select title
+from teaches, course
+where teaches.course_id = course.course_id and ID = 22591
 
 -- 문제2.
 -- dept_section_cnt 뷰 정의
