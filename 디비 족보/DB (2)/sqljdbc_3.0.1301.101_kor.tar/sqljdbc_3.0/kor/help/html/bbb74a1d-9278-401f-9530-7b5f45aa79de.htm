@@ -1,0 +1,100 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>JDBC 드라이버의 국가별 기능</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">JDBC 드라이버의 국가별 기능</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>Microsoft SQL Server JDBC 드라이버의 국가별 기능은 다음과 같습니다. </p>
+    <ul><li>
+        SQL Server와 동일한 언어로 완전히 지역화된 환경을 지원합니다.<br />
+      </li><li>
+        로캘을 구분하는 SQL Server 데이터에 대해 Java 언어 변환을 지원합니다.<br />
+      </li><li>
+        운영 체제에 관계없이 국가별 언어를 지원합니다.<br />
+      </li></ul>
+  </div><h1 class="heading">문자 데이터 처리</h1><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Java 문자 데이터는 기본적으로 유니코드로 처리하며 Java <b>String</b> 개체는 유니코드 문자 데이터를 나타냅니다. JDBC 드라이버에서 이 규칙의 유일한 예외는 ASCII 스트림 getter 및 setter 메서드입니다. 이들 메서드는 암시적으로 잘 알려진 단일 코드 페이지(ASCII)를 전제로 한 바이트 스트림을 사용하기 때문에 특수한 경우에 해당합니다.</p>
+      <p xmlns="">또한 JDBC 드라이버는 <b>sendStringParametersAsUnicode</b> 연결 문자열 속성을 제공합니다. 이 속성을 사용하여 문자 데이터의 준비된 매개 변수를 유니코드 대신 ASCII 또는 MBCS(멀티바이트 문자 집합)로 보내도록 지정할 수 있습니다. <b>sendStringParametersAsUnicode</b> 연결 문자열 속성에 대한 자세한 내용은 <a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">연결 속성 설정</a>을 참조하십시오. </p>
+    </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h1 class="heading" xmlns="">드라이버의 들어오는 데이터 변환</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">서버에서 들어오는 유니코드 텍스트 데이터는 유니코드로 직접 전달되므로 변환할 필요가 없습니다. 서버에서 들어오는 데이터 중 유니코드가 아닌 데이터는 데이터베이스 또는 열 수준에서 데이터의 코드 페이지에서 유니코드로 변환됩니다. JDBC 드라이버는 이러한 변환을 수행하기 위해 JVM(Java Virtual Machine) 변환 루틴을 사용합니다. 이러한 변환은 형식화된 모든 문자열 및 문자 스트림 getter 메서드에서 수행됩니다.</p>
+          <p xmlns="">JVM이 데이터베이스의 데이터에 대해 적절한 코드 페이지를 지원하지 않는 경우 JDBC 드라이버에서 "XXX 코드 페이지는 Java 환경에서 지원되지 않습니다." 예외가 발생합니다. 이 문제를 해결하려면 해당 JVM에 필요한 전체 국가별 문자 지원을 설치해야 합니다. 이러한 예를 보려면 Sun Microsystems 웹 사이트의 Supported Encodings 설명서를 참조하십시오.</p>
+        </content></div>
+      <h1 class="heading" xmlns="">드라이버의 나가는 데이터 변환</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">드라이버에서 서버로 나가는 문자 데이터는 ASCII 또는 유니코드일 수 있습니다. 예를 들어 <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 및 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 클래스의 <b>setNString</b>, <b>setNCharacterStream</b> 및 <b>setNClob</b> 메서드와 같은 새 JDBC 4.0 국가별 문자 메서드는 항상 유니코드를 사용하여 매개 변수 값을 서버에 보냅니다.</p>
+          <p xmlns="">반면에 <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 및 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 클래스의 <b>setString</b>, <b>setCharacterStream</b> 및 <b>setClob</b> 메서드와 같은 국가별 문자 API 메서드 이외의 메서드는 <b>sendStringParametersAsUnicode</b> 속성이 "true"(기본값)로 설정되어 있는 경우에만 유니코드를 사용하여 서버에 값을 보냅니다. </p>
+        </content></div>
+    </sections></div><h1 class="heading">유니코드가 아닌 매개 변수</h1><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">유니코드가 아닌 <b>CHAR</b>, <b>VARCHAR</b> 또는 <b>LONGVARCHAR</b> 유형의 매개 변수를 사용할 때 성능을 최적화하려면 <b>sendStringParametersAsUnicode</b> 연결 문자열 속성을 "false"로 설정하고 국가별 문자 메서드가 아닌 메서드를 사용합니다.</p>
+    </content></div><h1 class="heading">서식 지정 문제</h1><div id="sectionSection2" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">날짜, 시간 및 통화의 경우 지역화된 데이터에 관한 모든 서식 지정은 <b>Locale</b> 개체와 <b>Date</b>, <b>Calendar</b> 및 <b>Number</b> 데이터 형식의 다양한 서식 지정 메서드를 사용하여 Java 언어 수준에서 수행됩니다. 드문 경우이기는 하지만 JDBC 드라이버가 지역화된 형식으로 로캘 구분 데이터를 함께 전달해야 하는 경우 기본 JVM 로캘과 함께 적절한 포맷터가 사용됩니다.</p>
+    </content></div><h1 class="heading">데이터 정렬 지원</h1><div id="sectionSection3" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">JDBC 드라이버 3.0에서는 SQL Server 2000, SQL Server 2005에서 지원하는 모든 데이터 정렬 및 SQL Server 2008에 도입된 새로운 버전의 Windows 데이터 정렬 이름 또는 새 데이터 정렬을 지원합니다.</p>
+      <p xmlns="">데이터 정렬에 대한 자세한 내용은 SQL Server 온라인 설명서의 <a href="http://go.microsoft.com/fwlink/?LinkId=131366" target="_blank" alt=""><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">데이터 정렬 및 유니코드 지원</linkText></a> 및 <a href="http://go.microsoft.com/fwlink/?LinkId=131367" target="_blank" alt=""><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Windows 데이터 정렬 이름(Transact-SQL)</linkText></a>을 참조하십시오.</p>
+    </content></div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">JDBC 드라이버 개요</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

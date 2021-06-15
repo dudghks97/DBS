@@ -1,0 +1,93 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>매개 변수가 없는 SQL 문 사용</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">매개 변수가 없는 SQL 문 사용</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>매개 변수가 없는 SQL 문을 사용하여 SQL Server 데이터베이스에서 데이터 작업을 수행하려면 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 클래스의 <a href="599cf463-e19f-4baa-bacb-513cad7c6cd8.htm">executeQuery</a> 메서드를 사용하여 요청한 데이터가 포함될 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a>를 반환합니다. 이렇게 하려면 먼저 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 클래스의 <a href="6d043ba9-b8ec-41d3-bb22-ad2c4aebda6f.htm">createStatement</a> 메서드를 사용하여 <b>SQLServerStatement</b> 개체를 만들어야 합니다. </p>
+    <p>다음 예제에서는 SQL Server 2005 AdventureWorks 샘플 데이터베이스에 대해 열린 연결을 함수로 전달하고 SQL 문을 생성 및 실행한 후 결과 집합에서 결과를 읽습니다. </p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>public static void executeStatement(Connection con) {
+   try {
+      String SQL = "SELECT LastName, FirstName FROM Person.Contact ORDER BY LastName";
+      Statement stmt = con.createStatement();
+      ResultSet rs = stmt.executeQuery(SQL);
+
+      while (rs.next()) {
+         System.out.println(rs.getString("LastName") + ", " + rs.getString("FirstName"));
+      }
+      rs.close();
+      stmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span></div>
+    <p>결과 집합을 사용하는 방법에 대한 자세한 내용은 <a href="9ed5ad41-22e0-4e4a-8a79-10512db60d50.htm">JDBC 드라이버로 결과 집합 관리</a>를 참조하십시오.</p>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="fe28f48a-e1bc-48ff-a5e7-c24cd6e5ecc7.htm">SQL이 있는 문 사용</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

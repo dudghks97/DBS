@@ -1,0 +1,505 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>getFunctionColumns 메서드(SQLServerDatabaseMetaData)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">getFunctionColumns 메서드(SQLServerDatabaseMetaData)</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>지정된 카탈로그의 시스템 또는 사용자 함수 매개 변수와 반환 형식에 대한 설명을 검색합니다. </p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+      이 기능은 Microsoft SQL Server JDBC 드라이버 버전 2.0부터 도입되었습니다.<p />
+    </div>
+  </div><h1 class="heading">구문</h1><div id="syntaxSection" class="section"><div class="sampleCode"><span codeLanguage="other"><pre>
+public ResultSet <b>getFunctionColumns</b>(java.lang.String <i>catalog</i>,
+                       java.lang.String <i>schemaPattern</i>,
+                       java.lang.String <i>functionNamePattern</i>
+                       java.lang.String <i>columnNamePattern</i>)</pre></span></div><h1 class="heading">매개 변수</h1><div id="parametersSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        <i>catalog</i>
+      </p>
+      <p xmlns="">카탈로그 이름이 들어 있는 <b>String</b>입니다. 빈 문자열("")을 지정하면 결과에는 카탈로그 없이 함수만 포함됩니다. <b>null</b>을 지정하면 검색에 카탈로그 이름이 사용되지 않습니다.</p>
+      <p xmlns="">
+        <i>schemaPattern</i>
+      </p>
+      <p xmlns="">스키마 이름 패턴이 들어 있는 <b>String</b>입니다. 빈 문자열("")을 지정하면 결과에는 스키마 없이 함수만 포함됩니다. <b>null</b>을 지정하면 검색에 스키마 이름이 사용되지 않습니다.</p>
+      <p xmlns="">
+        <i>functionNamePattern</i>
+      </p>
+      <p xmlns="">함수 이름이 들어 있는 <b>String</b>입니다.</p>
+      <p xmlns="">
+        <i>columnNamePattern</i>
+      </p>
+      <p xmlns="">매개 변수 이름이 들어 있는 <b>String</b>입니다.</p>
+    </content>
+  </div></div><h1 class="heading">반환 값</h1><div id="returnValueSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 개체입니다.</p>
+    </content>
+  </div><h1 class="heading">예외</h1><div id="exceptionsSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        <a href="af5ef257-7cf6-4db3-b1ee-07d22d82bef1.htm">SQLServerException</a>
+      </p>
+    </content>
+  </div><h1 class="heading">설명</h1><div id="remarksSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">이 <b>getFunctionColumns</b> 메서드는 java.sql.DatabaseMetaData 인터페이스의 <b>getFunctionColumns</b> 메서드에 의해 지정됩니다.</p>
+      <p xmlns="">이 메서드는 지정된 카탈로그 내에서 지정된 스키마, 함수 이름 및 매개 변수 이름과 일치하는 함수와 매개 변수만 반환합니다.</p>
+      <p xmlns="">결과 집합의 각 행에는 매개 변수 설명, 열 설명 또는 반환 형식에 대한 다음 열이 포함됩니다.</p>
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              이름
+            </th>
+            <th>
+              형식
+            </th>
+            <th>
+              설명
+            </th>
+          </tr><tr>
+          <td>
+            <p>FUNCTION_CAT</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>함수가 있는 데이터베이스의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FUNCTION_SCHEM</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>함수의 스키마입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FUNCTION_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>함수의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>COLUMN_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>매개 변수 또는 열의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>COLUMN_TYPE</p>
+          </td>
+          <td>
+            <p>
+              <b>short</b>
+            </p>
+          </td>
+          <td>
+            <p>열의 형식입니다. 다음 값 중 하나일 수 있습니다.</p>
+            <ul><li>
+                functionColumnUnknown(0): 알 수 없는 형식입니다.<br />
+              </li><li>
+                functionColumnIn(1): 입력 매개 변수입니다.<br />
+              </li><li>
+                functionColumnInOut(2): 입/출력 매개 변수입니다.<br />
+              </li><li>
+                functionColumnOut(3): 출력 매개 변수입니다.<br />
+              </li><li>
+                functionReturn(4): 함수 반환 값입니다.<br />
+              </li><li>
+                functionColumnResult(5): 매개 변수 또는 열은 결과 집합의 열입니다.<br />
+              </li></ul>
+          </td>
+        </tr><tr>
+          <td>
+            <p>DATA_TYPE</p>
+          </td>
+          <td>
+            <p>
+              <b>smallint</b>
+            </p>
+          </td>
+          <td>
+            <p><b>Java.sql.Types</b>의 SQL 데이터 형식 값입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>TYPE_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>데이터 형식의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>PRECISION</p>
+          </td>
+          <td>
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td>
+            <p>총 유효 자릿수입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>LENGTH</p>
+          </td>
+          <td>
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td>
+            <p>데이터의 길이(바이트)입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SCALE</p>
+          </td>
+          <td>
+            <p>
+              <b>short</b>
+            </p>
+          </td>
+          <td>
+            <p>소수점 이하 자릿수입니다.</p>
+            <p>
+            </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>RADIX</p>
+          </td>
+          <td>
+            <p>
+              <b>short</b>
+            </p>
+          </td>
+          <td>
+            <p>숫자 형식의 기수입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>NULLABLE</p>
+          </td>
+          <td>
+            <p>
+              <b>short</b>
+            </p>
+          </td>
+          <td>
+            <p>매개 변수 또는 반환 값에 <b>null</b> 값이 포함될 수 있는지 여부를 나타냅니다. </p>
+            <p> 다음 값 중 하나일 수 있습니다.</p>
+            <ul><li>
+                functionNoNulls(0): NULL 값이 허용되지 않습니다.<br />
+              </li><li>
+                functionNullable(1): NULL 값이 허용됩니다.<br />
+              </li><li>
+                functionNullableUnknown(2): 알 수 없는 형식입니다.<br />
+              </li></ul>
+          </td>
+        </tr><tr>
+          <td>
+            <p>REMARKS</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>열 또는 매개 변수에 대한 설명입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>COLUMN_DEF</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>열의 기본값입니다.</p>
+            <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+              이 정보는 SQL Server에서 사용할 수 있으며 JDBC 드라이버별 정보입니다.<p />
+            </div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SQL_DATA_TYPE</p>
+          </td>
+          <td>
+            <p>
+              <b>smallint</b>
+            </p>
+          </td>
+          <td>
+            <p>이 열은 <b>datetime</b> 및 ISO <b>interval</b> 데이터 형식을 제외하고 <b>DATA_TYPE</b> 열과 동일합니다.</p>
+            <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+              이 정보는 SQL Server에서 사용할 수 있으며 JDBC 드라이버별 정보입니다.<p />
+            </div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SQL_DATETIME_SUB</p>
+          </td>
+          <td>
+            <p>
+              <b>smallint</b>
+            </p>
+          </td>
+          <td>
+            <p><b>SQL_DATA_TYPE</b>의 값이 <b>SQL_DATETIME</b> 또는 <b>SQL_INTERVAL</b>인 경우 <b>datetime</b> ISO <b>interval</b> 하위 코드입니다. <b>datetime</b> 및 ISO <b>interval</b> 이외의 데이터 형식인 경우에는 이 열이 NULL입니다.</p>
+            <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+              이 정보는 SQL Server에서 사용할 수 있으며 JDBC 드라이버별 정보입니다.<p />
+            </div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>CHAR_OCTET_LENGTH</p>
+          </td>
+          <td>
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td>
+            <p>이진 및 문자 기반 매개 변수 또는 열의 최대 길이입니다. 다른 데이터 형식의 경우에는 NULL입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ORDINAL_POSITION</p>
+          </td>
+          <td>
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td>
+            <p>입력 및 출력 매개 변수의 경우 1부터 시작하는 위치를 나타냅니다. </p>
+            <p>결과 집합 열의 경우 1부터 시작하는 결과 집합의 열 위치입니다.</p>
+            <p>반환 값의 경우 0입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>IS_NULLABLE</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>매개 변수 또는 열의 Null 허용 여부를 결정합니다.</p>
+            <p>다음 값 중 하나일 수 있습니다.</p>
+            <p>
+              <b>YES</b>: 매개 변수 또는 열에 NULL 값이 포함될 수 있습니다.</p>
+            <p>
+              <b>NO</b>: 매개 변수 또는 열에 NULL 값이 포함될 수 없습니다.</p>
+            <p>빈 문자열(""): 알 수 없는 형식입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SS_TYPE_CATALOG_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>UDT(사용자 정의 형식)를 포함하는 카탈로그의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SS_TYPE_SCHEMA_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>UDT(사용자 정의 형식)를 포함하는 스키마의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SS_UDT_CATALOG_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>정규화된 이름의 UDT(사용자 정의 형식)입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SS_UDT_SCHEMA_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>XML 스키마 컬렉션 이름이 정의된 카탈로그의 이름입니다. 카탈로그 이름을 찾을 수 없는 경우 이 변수에는 빈 문자열이 포함됩니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SS_UDT_ASSEMBLY_TYPE_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>XML 스키마 컬렉션 이름이 정의된 스키마의 이름입니다. 스키마 이름을 찾을 수 없는 경우 이 변수는 빈 문자열입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SS_XML_SCHEMACOLLECTION_CATALOG_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>XML 스키마 컬렉션의 이름입니다. 이름을 찾을 수 없는 경우 이 변수는 빈 문자열입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SS_XML_SCHEMACOLLECTION_SCHEMA_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>UDT(사용자 정의 형식)를 포함하는 카탈로그의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SS_XML_SCHEMACOLLECTION_NAME</p>
+          </td>
+          <td>
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td>
+            <p>UDT(사용자 정의 형식)를 포함하는 스키마의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SS_DATA_TYPE</p>
+          </td>
+          <td>
+            <p>
+              <b>tinyint</b>
+            </p>
+          </td>
+          <td>
+            <p>확장 저장 프로시저에 사용되는 SQL Server 데이터 형식입니다.</p>
+            <p>
+              <b>참고</b>   SQL Server에서 반환하는 데이터 형식에 대한 자세한 내용은 SQL Server 온라인 설명서의 "데이터 형식(Transact-SQL)"을 참조하십시오.</p>
+          </td>
+        </tr></table>
+    </content>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="8b8049d0-8c6d-4476-866b-098709f37eec.htm">SQLServerDatabaseMetaData 클래스</a><br /><a href="327ba0bc-438a-494c-b119-1cd4a096bb58.htm">SQLServerDatabaseMetaData 멤버</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

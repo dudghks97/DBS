@@ -1,0 +1,104 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>응용 프로그램 보안</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">응용 프로그램 보안</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>Microsoft SQL Server JDBC 드라이버를 사용할 때는 응용 프로그램의 보안을 확보하기 위해 미리 주의를 기울여야 합니다. 다음 섹션에서는 응용 프로그램의 보안을 확보하기 위해 수행할 수 있는 단계에 관한 정보를 제공합니다. </p>
+  </div><h1 class="heading">Java 정책 권한 사용</h1><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Microsoft SQL Server JDBC 드라이버를 사용할 때는 JDBC 드라이버에서 요구하는 필수 Java 정책 권한을 지정해야 합니다. JRE(Java Runtime Environment)는 런타임에 사용하여 스레드가 리소스에 액세스할 수 있는지 여부를 확인할 수 있는 다양한 보안 모델을 제공합니다. 이러한 액세스는 보안 정책 파일을 통해 제어할 수 있습니다. 또한 이 정책 파일은 배포자와 컨테이너의 sysadmin을 통해 관리되지만 이 항목에 나열된 권한은 JDBC 드라이버의 기능에 영향을 주는 권한입니다.</p>
+      <p xmlns="">정책 파일의 일반적인 권한은 다음과 같습니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>// Example policy file entry.
+grant [signedBy &lt;signer&gt;,] [codeBase &lt;code source&gt;] {
+   permission  &lt;class&gt;  [&lt;name&gt; [, &lt;action list&gt;]];
+};</pre></span></div>
+      <p xmlns="">다음 코드베이스는 최소한의 권한을 부여하도록 JDBC 드라이버 코드베이스로 제한해야 합니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>grant codeBase "file:/install_dir/lib/-" {
+
+// Grant access to data source.
+permission java.util.PropertyPermission "java.naming.*", "read,write";
+
+// Specify which hosts can be connected to.
+permission java.net.socketPermission "host:port", "connect";
+
+// Logger permission to take advantage of logging.
+permission java.util.logging.LoggingPermission;
+
+// Grant listen/connect/accept permissions to the driver if 
+// connecting to a named instance as the client driver. 
+// This connects to a udp service and listens for a response.
+permission java.net.SocketPermission "*", "listen, connect, accept"; 
+}; </pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        "file:/install_dir/lib/-" 코드는 JDBC 드라이버의 설치 디렉터리를 나타냅니다.<p />
+      </div>
+    </content></div><h1 class="heading">서버 통신 보호</h1><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">JDBC 드라이버를 사용하여 SQL Server 데이터베이스와 통신할 경우 IPSec(인터넷 프로토콜 보안), SSL(Secure Sockets Layer) 또는 둘 다를 사용하여 통신 채널의 보안을 유지할 수 있습니다. </p>
+      <p xmlns="">SSL 지원을 사용하여 IPSec 외에 추가 수준의 보호 기능을 제공할 수 있습니다. SSL 사용에 대한 자세한 내용은 <a href="8e566243-2f93-4b21-8065-3c8336649309.htm">SSL 암호화 사용</a>을 참조하십시오.</p>
+    </content></div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="90724ec6-a9cb-43ef-903e-793f89410bc0.htm">JDBC 드라이버 응용 프로그램 보안</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

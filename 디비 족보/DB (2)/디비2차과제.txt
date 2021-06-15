@@ -1,0 +1,76 @@
+select dept_name, count(distinct ID) as cnt_professor 
+from instructor
+where ID in (select ID
+			from teaches
+			where year!=2016)
+group by dept_name
+
+/////////////////////////////////////////////////////////////////////
+select s.name, s.dept_name
+from student as s
+where not exists((select course_id
+				  from course	
+				  where dept_name = 'History')
+				  except
+				  (select t.course_id
+				   from takes as t
+				   where s.ID = t.ID and
+						grade is not null
+				   )
+)
+
+/////////////////////////////////////////////////////////////////////////
+select dept_name 
+from (select dept_name, count (distinct course_id )
+      from teaches, instructor
+      where teaches.ID = instructor.ID
+      group by dept_name)
+      as dept_cnt(dept_name, cnt_id)                  
+where cnt_id >= 2
+
+//////////////////////////////////////////////////////////////////////////
+
+select dept_name, count(instructor.ID) as non_advisor
+from instructor
+where not exists (select i_ID
+				  from advisor
+				  where advisor.i_iD =
+						instructor.ID)
+group by dept_name
+					
+/////////////////////////////////////////////////////////////////////
+select count(course_id) as cnt_course
+from teaches as t
+where year = 2014 and semester = 'Fall' 
+			 and t.ID in( select i.ID
+					  from instructor as i
+					  where dept_name = 'Comp. Sci.')
+//////////////////////////////////////////////////////////////////////////
+
+with dept_total(dept_name, cnt_course_id) as
+			(select dept_name, count(course_id)
+			 from instructor as i, teaches as t
+			 where i.ID = t.ID
+			 group by dept_name),
+	dept_total_avg(cnt_course_id) as
+    (select avg(cnt_course_id)
+	 from dept_total)
+
+select dept_name, dept_total.cnt_course_id 
+from dept_total, dept_total_avg
+where dept_total.cnt_course_id >= dept_total_avg.cnt_course_id
+      
+/////////////////////////////////////////////////////////////
+with suho(ID, value) as 
+		(select takes.ID, sum(credits) as sum_sem_credits
+		   from takes, course
+		   where takes.course_id = 
+		   course.course_id and
+		   grade is not null and
+		   grade != 'F'
+		   group by takes.ID)
+update student
+set tot_cred = tot_cred + suho.value
+from student, suho
+where student.ID = suho.ID
+

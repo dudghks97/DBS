@@ -1,0 +1,107 @@
+릴리스 정보
+Microsoft SQL Server JDBC 드라이버 3.0 
+2010년 4월
+
+
+소개
+------------
+이 파일에는 Microsoft SQL Server JDBC 드라이버 설명서를 보완하는 
+최신 정보 및 기타 중요 정보가 들어 있습니다. 
+JDBC 드라이버를 설치하기 전에 
+이 파일을 읽어야 합니다.
+
+본사에서는 사용자의 의견을 매우 소중하게 여기며 
+이러한 의견을 반영하기 위해 노력하고 있습니다. 
+JDBC 드라이버 뉴스 그룹 및 온라인 포럼을 사용하여 
+의견을 제출하는 방법은 http://msdn.microsoft.com/data/jdbc의 
+Microsoft SQL Server JDBC 드라이버 페이지를 참조하십시오.
+
+
+설치
+------------
+install.txt에서 JDBC 드라이버 설치 방법을 볼 수 있습니다.
+Windows 및 Unix 운영 체제에서 JDBC 드라이버를 설치하는 방법은 
+이 파일을 참조하십시오.
+
+지원되는 운영 체제
+---------------------------
+Microsoft SQL Server JDBC 드라이버 3.0은 다음과 같은 운영 체제를 지원합니다. 
+Linux, Unix, Windows Server 2003 서비스 팩 2, Windows Server 2008, Windows Vista 서비스 팩 1, 
+Windows XP 서비스 팩 3, Windows Server 2008 R2 및 Windows 7
+
+위 목록은 지원되는 운영 체제 중 일부입니다.
+JDBC 드라이버는 JVM(Java Virtual Machine)의 사용을 지원하는 모든 운영 체제에서 작동하도록 설계되어 있지만 
+Sun Solaris, SUSE Linux 및 Windows XP 이상 운영 체제에서만 테스트가 완료되었습니다.
+
+릴리스 내용
+----------------
+Microsoft SQL Server JDBC 드라이버 실행 파일인 zip 또는 tar 파일은 지정된 위치에 
+다음 파일의 압축을 풉니다. 여기에서 지정된 위치는 선택된 설치 위치에 대한 
+상대적인 위치입니다.
+
+<installation directory>\sqljdbc_<version>\<language>\install.txt
+<installation directory>\sqljdbc_<version>\<language>\release.txt
+<installation directory>\sqljdbc_<version>\<language>\license.txt
+<installation directory>\sqljdbc_<version>\<language>\sqljdbc.jar
+<installation directory>\sqljdbc_<version>\<language>\sqljdbc4.jar
+<installation directory>\sqljdbc_<version>\<language>\auth\x86\sqljdbc_auth.dll
+<installation directory>\sqljdbc_<version>\<language>\auth\x64\sqljdbc_auth.dll
+<installation directory>\sqljdbc_<version>\<language>\auth\ia64\sqljdbc_auth.dll
+<installation directory>\sqljdbc_<version>\<language>\help\default.htm
+<installation directory>\sqljdbc_<version>\<language>\help\index.htm
+<installation directory>\sqljdbc_<version>\<language>\help\toc.htm
+<installation directory>\sqljdbc_<version>\<language>\help\html\<doc pages...>
+<installation directory>\sqljdbc_<version>\<language>\help\local\<doc files...>
+<installation directory>\sqljdbc_<version>\<language>\help\samples\<sample files...>
+<installation directory>\sqljdbc_<version>\<language>\xa\xa_install.sql
+<installation directory>\sqljdbc_<version>\<language>\xa\x86\sqljdbc_xa.dll
+<installation directory>\sqljdbc_<version>\<language>\xa\x64\sqljdbc_xa.dll
+<installation directory>\sqljdbc_<version>\<language>\xa\ia64\sqljdbc_xa.dll
+
+
+변경 목록
+-----------
+2.0에서 3.0으로 변경된 내용
+
+327029 이제 "sqljdbc_auth.dll을 로드하지 못했습니다." 예외에 오류 원인에 대한 추가 정보가 포함됩니다.
+
+329180 이제 응용 프로그램 서버에서 Wrapper 인터페이스를 사용하여 SQLServerDataSource 인스턴스 및 
+       Wrapper 인터페이스를 구현하는 기타 클래스의 프록시를 구현합니다.
+
+293533 lastUpdateCount=true인 경우 테이블 트리거로 실행된 저장 프로시저의 반환 값이 
+       INSERT, UPDATE 또는 DELETE 쿼리의 업데이트 횟수에 더 이상 영향을 주지 않습니다.
+
+345336 내부 연결이 예기치 않게 닫힌 후 Statement.close()에서 무한 루프가 발생하는 문제가 수정되었습니다.
+
+351393 이제 executeUpdate에서 BULK INSERT 쿼리의 올바른 업데이트 횟수를 반환합니다.
+
+327052 암시적 커서 변환이 서버 커서의 지원을 받지 않는 결과 집합을 생성하는 경우 이제 
+       ResultSet.getHoldability()에서 ResultSet.HOLD_CURSORS_OVER_COMMIT을 반환합니다.
+
+374320 ResultSet.close() 메서드에서 잠금 시간 초과 또는 기타 행 오류가 나타날 때 무한 루프가 발생하는 
+       문제가 수정되었습니다.
+
+373923 이제 드라이버에서 SSL 통신에 TLS 프로토콜을 사용하여 FIPS(Federal Information Processing Standard)
+       를 준수합니다.
+
+376322 이제 드라이버가 Kerberos 환경에서 주 서버 역할을 하는 장애 조치 파트너에 연결합니다.
+
+305612 ResultSet.getInt("DATA_TYPE")에서 TABLE SQL 형식에 대해 더 이상 NullPointerException이 
+       발생하지 않습니다.
+
+411695 getSchemas는 스키마 정보를 반환해야 하는데 이전 버전의 드라이버는 스키마 정보 대신 사용자 
+       정보를 반환했습니다. 이제 드라이버에서 스키마 정보를 반환하며 JDBC 사양에 따라 스키마 
+       이름에 대한 패턴 일치를 지원합니다.
+
+
+알려진 문제점
+------------
+다음은 Microsoft SQL Server JDBC 드라이버 3.0에 대한 알려진 문제점입니다.
+
+
+1) SQL MERGE 문과 관련된 매개 변수 메타데이터 제한 사항
+
+매개 변수가 있는 MERGE 쿼리와 함께 사용할 경우 PreparedStatement.getParameterMetadata()에서 
+SQLException이 발생합니다.
+
+

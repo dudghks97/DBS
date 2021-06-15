@@ -1,0 +1,96 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>결과 집합 메타데이터 사용</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">결과 집합 메타데이터 사용</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>Microsoft SQL Server JDBC 드라이버는 결과 집합에 포함된 열 관련 정보를 쿼리하기 위해 <a href="9a36885f-83f3-44af-85f0-2b849dfd20d4.htm">SQLServerResultSetMetaData</a> 클래스를 구현합니다. 이 클래스에는 단일 값 형태로 정보를 반환하는 다양한 메서드가 들어 있습니다. </p>
+    <p><b>SQLServerResultSetMetaData</b> 개체를 만들려면 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 클래스의 <a href="9dcdbf69-1d47-422c-842e-0bed5afdcb93.htm">getMetaData</a> 메서드를 사용합니다.</p>
+    <p>다음 예제에서는 SQL Server 2005 AdventureWorks 샘플 데이터베이스에 대해 열린 연결을 함수로 전달하고, <b>SQLServerResultSet</b> 클래스의 <b>getMetaData</b> 메서드를 사용하여 <b>SQLServerResultSetMetaData</b> 개체를 반환한 다음, <b>SQLServerResultSetMetaData</b> 개체의 다양한 메서드를 사용하여 결과 집합에 포함된 열의 이름 및 데이터 형식에 관한 정보를 표시합니다.</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>public static void getResultSetMetaData(Connection con) {
+   try {
+      String SQL = "SELECT TOP 10 * FROM Person.Contact";
+      Statement stmt = con.createStatement();
+      ResultSet rs = stmt.executeQuery(SQL);
+      ResultSetMetaData rsmd = rs.getMetaData();
+
+      // Display the column name and type.
+      int cols = rsmd.getColumnCount();
+      for (int i = 1; i &lt;= cols; i++) {
+         System.out.println("NAME: " + rsmd.getColumnName(i) + " " + "TYPE: " + rsmd.getColumnTypeName(i));
+      }
+      rs.close();
+      stmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span></div>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="5cfb35d4-ddcd-40a2-8091-f29cddc32552.htm">JDBC 드라이버로 메타데이터 처리</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

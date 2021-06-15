@@ -1,0 +1,93 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>SQL 문을 사용하여 데이터베이스 개체 수정</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">SQL 문을 사용하여 데이터베이스 개체 수정</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>SQL 문을 사용하여 SQL Server 데이터베이스 개체를 수정하려면 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 클래스의 <a href="10ae662a-ce3c-4b24-875c-5c2df319d93b.htm">executeUpdate</a> 메서드를 사용합니다. <b>executeUpdate</b> 메서드는 SQL 문을 데이터베이스에 전달하여 처리한 다음 적용된 행이 없기 때문에 0 값을 반환합니다. </p>
+    <p>이렇게 하려면 먼저 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 클래스의 <a href="6d043ba9-b8ec-41d3-bb22-ad2c4aebda6f.htm">createStatement</a> 메서드를 사용하여 <b>SQLServerStatement</b> 개체를 만들어야 합니다.</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+      데이터베이스에서 개체를 수정하는 SQL 문은 DDL(데이터 정의 언어) 문이라고 합니다. DDL 문에는 CREATE TABLE, DROP TABLE, CREATE INDEX 및 DROP INDEX 등의 문이 있습니다. SQL Server에서 지원하는 DDL 문의 형식에 대한 자세한 내용은 SQL Server 온라인 설명서를 참조하십시오.<p />
+    </div>
+    <p>다음 예제에서는 SQL Server 2005 AdventureWorks 샘플 데이터베이스에 대해 열린 연결을 함수로 전달하고, 데이터베이스에 간단한 테스트 테이블을 만드는 SQL 문을 생성한 다음, 해당 문을 실행하고 반환 값을 표시합니다.</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>public static void executeUpdateStatement(Connection con) {
+   try {
+      String SQL = "CREATE TABLE TestTable (Col1 int IDENTITY, Col2 varchar(50), Col3 int)";
+      Statement stmt = con.createStatement();
+      int count = stmt.executeUpdate(SQL);
+      stmt.close();
+
+      System.out.println("ROWS AFFECTED: " + count);
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span></div>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="fe28f48a-e1bc-48ff-a5e7-c24cd6e5ecc7.htm">SQL이 있는 문 사용</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,433 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>기본 데이터 형식 사용</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">기본 데이터 형식 사용</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>Microsoft SQL Server JDBC 드라이버는 JDBC 기본 데이터 형식을 사용하여 SQL Server 데이터 형식을 Java 프로그래밍 언어가 인식할 수 있는 형식으로 변환하며 그 반대 과정도 수행합니다. Microsoft SQL Server JDBC 드라이버 버전 2.0 이상에서는 <b>SQLXML</b> 데이터 형식과 <b>NCHAR</b>, <b>NVARCHAR</b>, <b>LONGNVARCHAR</b>, <b>NCLOB</b> 등 국가별(유니코드) 데이터 형식이 포함된 JDBC 4.0 API를 지원합니다. </p>
+  </div><h1 class="heading">데이터 형식 매핑</h1><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">다음 표에서는 기본 SQL Server, JDBC 및 Java 프로그래밍 언어 데이터 형식 간의 기본 매핑을 나열합니다.</p>
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              SQL Server 형식
+            </th>
+            <th>
+              JDBC 형식(java.sql.Types)
+            </th>
+            <th>
+              Java 언어 형식
+            </th>
+          </tr><tr>
+          <td>
+            <p>bigint</p>
+          </td>
+          <td>
+            <p>BIGINT</p>
+          </td>
+          <td>
+            <p>long</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>timestamp</p>
+            <p>binary</p>
+          </td>
+          <td>
+            <p>BINARY</p>
+          </td>
+          <td>
+            <p>byte[]</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>bit</p>
+          </td>
+          <td>
+            <p>BIT</p>
+          </td>
+          <td>
+            <p>boolean</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>char</p>
+          </td>
+          <td>
+            <p>CHAR</p>
+          </td>
+          <td>
+            <p>String</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>decimal</p>
+            <p>money</p>
+            <p>smallmoney</p>
+          </td>
+          <td>
+            <p>DECIMAL</p>
+          </td>
+          <td>
+            <p>java.math.BigDecimal</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>float</p>
+          </td>
+          <td>
+            <p>DOUBLE</p>
+          </td>
+          <td>
+            <p>double</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>int</p>
+          </td>
+          <td>
+            <p>INTEGER</p>
+          </td>
+          <td>
+            <p>int</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>image</p>
+            <p>varbinary(max)</p>
+          </td>
+          <td>
+            <p>LONGVARBINARY</p>
+          </td>
+          <td>
+            <p>byte[]</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>varchar(max)</p>
+            <p>text</p>
+          </td>
+          <td>
+            <p>LONGVARCHAR</p>
+          </td>
+          <td>
+            <p>String</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>nchar</p>
+          </td>
+          <td>
+            <p>CHAR</p>
+            <p>NCHAR(Java SE 6.0)</p>
+          </td>
+          <td>
+            <p>String</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>nvarchar</p>
+          </td>
+          <td>
+            <p>VARCHAR</p>
+            <p>NVARCHAR(Java SE 6.0)</p>
+          </td>
+          <td>
+            <p>String</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>nvarchar(max)</p>
+            <p>ntext</p>
+          </td>
+          <td>
+            <p>LONGVARCHAR</p>
+            <p>LONGNVARCHAR(Java SE 6.0)</p>
+          </td>
+          <td>
+            <p>String</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>numeric</p>
+          </td>
+          <td>
+            <p>NUMERIC</p>
+          </td>
+          <td>
+            <p>java.math.BigDecimal</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>real</p>
+          </td>
+          <td>
+            <p>REAL</p>
+          </td>
+          <td>
+            <p>float</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>smallint</p>
+          </td>
+          <td>
+            <p>SMALLINT</p>
+          </td>
+          <td>
+            <p>short</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>datetime</p>
+            <p>smalldatetime</p>
+          </td>
+          <td>
+            <p>TIMESTAMP</p>
+          </td>
+          <td>
+            <p>java.sql.Timestamp</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>varbinary</p>
+            <p>udt</p>
+          </td>
+          <td>
+            <p>VARBINARY</p>
+          </td>
+          <td>
+            <p>byte[]</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>varchar</p>
+          </td>
+          <td>
+            <p>VARCHAR</p>
+          </td>
+          <td>
+            <p>String</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>tinyint</p>
+          </td>
+          <td>
+            <p>TINYINT</p>
+          </td>
+          <td>
+            <p>short</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>uniqueidentifier</p>
+          </td>
+          <td>
+            <p>CHAR</p>
+          </td>
+          <td>
+            <p>String</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>xml</p>
+          </td>
+          <td>
+            <p>LONGVARCHAR</p>
+            <p>SQLXML(Java SE 6.0)</p>
+          </td>
+          <td>
+            <p>String</p>
+            <p>SQLXML</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>time</p>
+          </td>
+          <td>
+            <p>TIME(1)</p>
+          </td>
+          <td>
+            <p>java.sql.Time(1)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>date</p>
+          </td>
+          <td>
+            <p>DATE</p>
+          </td>
+          <td>
+            <p>java.sql.Date</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>datetime2</p>
+          </td>
+          <td>
+            <p>TIMESTAMP</p>
+          </td>
+          <td>
+            <p>java.sql.Timestamp</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>datetimeoffset(2)</p>
+          </td>
+          <td>
+            <p>microsoft.sql.Types.DATETIMEOFFSET</p>
+          </td>
+          <td>
+            <p>microsoft.sql.DateTimeOffset</p>
+          </td>
+        </tr></table>
+      <p xmlns="">(1) time SQL Server 형식과 함께 java.sql.Time을 사용하려면 <b>sendTimeAsDatetime</b> 연결 속성을 false로 설정해야 합니다.</p>
+      <p xmlns="">(2) <a href="20bbeacd-ccca-4a46-8184-ff941ae2ec5f.htm">DateTimeOffset 클래스</a>를 사용하여 <b>datetimeoffset</b> 값에 프로그래밍 방식으로 액세스할 수 있습니다.</p>
+      <p xmlns="">SQL Server sqlvariant 데이터 형식은 현재 JDBC 드라이버에서 지원되지 않습니다. sqlvariant 데이터 형식의 열이 포함된 테이블에서 쿼리를 사용하여 데이터를 검색하면 예외가 발생합니다. </p>
+      <p xmlns="">다음 섹션에서는 JDBC 드라이버와 기본 데이터 형식을 사용하는 방법의 예를 보여 줍니다. Java 응용 프로그램에서 기본 데이터 형식을 사용하는 방법에 대한 자세한 예는 <a href="59ac80cf-fc66-4493-933d-38e479c5f54d.htm">기본 데이터 형식 샘플</a>을 참조하십시오.</p>
+    </content></div><h1 class="heading">데이터를 문자열로 검색</h1><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">JDBC 기본 데이터 형식에 매핑되는 데이터 원본에서 데이터를 검색하여 문자열로 봐야 하거나 강력한 형식의 데이터가 필요하지 않은 경우 다음과 같이 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 클래스의 <a href="f81dde01-d328-4b32-8871-1efac645b68e.htm">getString</a> 메서드를 사용합니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>String SQL = "SELECT TOP 10 * FROM Person.Contact";
+Statement stmt = con.createStatement();
+ResultSet rs = stmt.executeQuery(SQL);
+
+while (rs.next()) {
+   System.out.println(rs.getString(4) + " " + rs.getString(6));
+}
+rs.close();
+stmt.close();
+</pre></span></div>
+    </content></div><h1 class="heading">데이터 형식별 데이터 검색</h1><div id="sectionSection2" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">데이터 원본에서 데이터를 검색해야 하고 검색할 데이터 형식을 알고 있는 경우 <b>SQLServerResultSet</b> 클래스의 <b>get&lt;Type&gt;</b> 메서드(<i>getter 메서드</i>라고도 함) 중 하나를 사용합니다. <b>get&lt;Type&gt;</b> 메서드는 다음과 같이 열 이름 또는 열 인덱스와 함께 사용할 수 있습니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>ResultSet rs = stmt.executeQuery("SELECT lname, job_id FROM employee
+   WHERE (lname = 'Brown')");
+rs.next();
+short empJobID = rs.getShort("job_id");
+rs.close();
+stmt.close();
+</pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        소수 자릿수 메서드가 있는 <b>getUnicodeStream</b> 및 <b>getBigDecimal</b>은 더 이상 사용하지 않으므로 JDBC 드라이버에서 지원하지 않습니다.<p />
+      </div>
+    </content></div><h1 class="heading">데이터 형식별 데이터 업데이트</h1><div id="sectionSection3" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">데이터 원본의 필드 값을 업데이트해야 하는 경우 <b>SQLServerResultSet</b> 클래스의 <b>update&lt;Type&gt;</b> 메서드 중 하나를 사용합니다. 다음 예제에서는 <a href="2bb0319e-12cb-4604-a7e3-b22a24b02296.htm">updateInt</a> 메서드와 <a href="cfced0ca-a281-40dc-8d2f-370d5f0bf12b.htm">updateRow</a> 메서드를 함께 사용하여 데이터 원본의 데이터를 업데이트합니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE); 
+ResultSet rs = stmt.executeQuery("SELECT lname, job_id FROM employee
+   WHERE (lname = 'Brown')");
+rs.next();
+short empJobID = rs.getInt(2);
+empJobID++;
+rs.first();
+rs.updateInt(2, empJobID);
+rs.updateRow();
+rs.close();
+stmt.close();
+</pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        JDBC 드라이버는 127자보다 긴 열 이름을 가진 SQL Server 열을 업데이트할 수 없습니다. 127자보다 긴 이름을 가진 열을 업데이트하려고 하면 예외가 발생합니다.<p />
+      </div>
+    </content></div><h1 class="heading">매개 변수가 있는 쿼리로 데이터 업데이트</h1><div id="sectionSection4" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">매개 변수가 있는 쿼리를 사용하여 데이터 원본의 데이터를 업데이트해야 하는 경우 <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 클래스의 <b>set&lt;Type&gt;</b> 메서드(<i>setter 메서드</i>라고도 함) 중 하나를 사용하여 매개 변수의 데이터 형식을 설정합니다. 다음 예제에서는 <a href="bd4e4085-f704-4a73-b6a7-7d443d564728.htm">prepareStatement</a> 메서드를 사용하여 매개 변수가 있는 쿼리를 선컴파일한 다음, <a href="25dabdc9-c60f-485a-87eb-306067964765.htm">setString</a> 메서드로 매개 변수의 문자열 값을 설정한 후 <a href="ca534c6b-ef4d-4ae8-8cc3-514728623cff.htm">executeUpdate</a> 메서드를 호출합니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>PreparedStatement pstmt = con.prepareStatement("UPDATE employee SET
+   fname = ? WHERE (lname = 'Brown')");
+String first = "Bob";
+pstmt.setString(1, first);
+int rowCount = pstmt.executeUpdate();
+pstmt.close();
+</pre></span></div>
+      <p xmlns="">매개 변수가 있는 쿼리에 대한 자세한 내용은 <a href="3202b88f-ce13-44dd-982c-c6a3b0260378.htm">매개 변수가 있는 SQL 문 사용</a>을 참조하십시오.</p>
+    </content></div><h1 class="heading">저장 프로시저에 매개 변수 전달</h1><div id="sectionSection5" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">형식화된 매개 변수를 저장 프로시저에 전달하려면 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 클래스의 <b>set&lt;Type&gt;</b> 메서드 중 하나를 사용하여 인덱스 또는 이름으로 매개 변수를 설정합니다. 다음 예제에서는 <a href="265b024c-898a-4bd0-98b5-f06076717b9e.htm">prepareCall</a> 메서드를 사용하여 저장 프로시저 호출을 설정한 다음, <a href="f38b97b5-d4f0-4f74-a33d-740241a85842.htm">setString</a> 메서드로 호출에 필요한 매개 변수를 설정한 후 <a href="599cf463-e19f-4baa-bacb-513cad7c6cd8.htm">executeQuery</a> 메서드를 호출합니다. </p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>CallableStatement cstmt = con.prepareCall("{call employee_jobid(?)}");
+String lname = "Brown";
+cstmt.setString(1, lname);
+Resultset rs = cstmt.executeQuery();
+rs.close();
+cstmt.close();
+</pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        이 예제에서는 저장 프로시저 실행 결과가 들어 있는 결과 집합을 반환합니다. <p />
+      </div>
+      <p xmlns="">저장 프로시저 및 입력 매개 변수와 함께 JDBC 드라이버를 사용하는 방법은 <a href="8f491b70-7d1b-42bd-964f-9a8b86af5eaa.htm">입력 매개 변수가 있는 저장 프로시저 사용</a>을 참조하십시오.</p>
+    </content></div><h1 class="heading">저장 프로시저에서 매개 변수 검색</h1><div id="sectionSection6" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">저장 프로시저에서 다시 매개 변수를 검색하려면 먼저 <b>SQLServerCallableStatement</b> 클래스의 <a href="82f8d608-efc1-4af8-a985-ec25d19420aa.htm">registerOutParameter</a> 메서드를 사용하여 이름 또는 인덱스로 출력 매개 변수를 등록한 다음, 저장 프로시저 호출을 실행한 후 반환된 출력 매개 변수를 해당 변수에 지정해야 합니다. 다음 예제에서는 <b>prepareCall</b> 메서드를 사용하여 저장 프로시저 호출을 설정하고 <b>registerOutParameter</b> 메서드로 출력 매개 변수를 설정한 다음, <a href="f38b97b5-d4f0-4f74-a33d-740241a85842.htm">setString</a> 메서드를 사용하여 호출에 필요한 매개 변수를 설정한 후 <b>executeQuery</b> 메서드를 호출합니다. 저장 프로시저의 출력 매개 변수가 반환하는 값은 <a href="9e3c51bc-7285-4f28-92c8-cfa05e49da9e.htm">getShort</a> 메서드를 사용하여 검색합니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>CallableStatement cstmt = con.prepareCall("{call employee_jobid (?, ?)}");
+cstmt.registerOutParameter(2, java.sql.Types.SMALLINT);
+String lname = "Brown";
+cstmt.setString(1, lname);
+Resultset rs = cstmt.executeQuery();
+short empJobID = cstmt.getShort(2);
+rs.close();
+cstmt.close();
+</pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        반환된 출력 매개 변수 외에도 저장 프로시저 실행 결과가 들어 있는 결과 집합이 반환될 수 있습니다.<p />
+      </div>
+      <p xmlns="">저장 프로시저 및 출력 매개 변수와 함께 JDBC 드라이버를 사용하는 방법은 <a href="1c006f27-7e99-43d5-974c-7b782659290c.htm">출력 매개 변수가 있는 저장 프로시저 사용</a>을 참조하십시오.</p>
+    </content></div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="7802328d-4d23-4775-9573-4169b127d258.htm">JDBC 드라이버 데이터 형식 이해</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

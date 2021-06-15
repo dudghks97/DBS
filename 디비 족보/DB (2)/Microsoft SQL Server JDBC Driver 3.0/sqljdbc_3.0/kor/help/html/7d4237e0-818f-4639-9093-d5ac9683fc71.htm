@@ -1,0 +1,227 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>스파스 열</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">스파스 열</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>스파스 열은 Null 값에 대해 최적화된 저장소가 있는 일반 열입니다. 스파스 열을 사용하면 Null 값에 대한 공간 요구 사항이 줄어드는 반면 Null이 아닌 값을 검색하는 데 더 많은 오버헤드가 발생합니다. 최소 20%에서 40% 사이의 공간이 절약되는 경우에는 스파스 열을 사용하십시오.</p>
+    <p>SQL Server JDBC 드라이버 3.0에서는 SQL Server 2008 또는 그 이상의 서버에 연결할 때 스파스 열을 지원합니다. <a href="f173fa5d-e114-4a37-a5c4-2baad9ff3af1.htm">SQLServerDatabaseMetaData.getColumns</a>, <a href="e2b0e0f7-717c-48e6-bcd2-a325d938a833.htm">SQLServerDatabaseMetaData.getFunctionColumns</a> 또는 <a href="4f0df8fe-3cd6-46e4-ae3c-dc23c35676b2.htm">SQLServerDatabaseMetaData.getProcedureColumns</a>를 사용하여 스파스인 열과 열 집합 열인 열을 판별할 수 있습니다.</p>
+    <p>열 집합은 형식화되지 않은 XML 형식의 모든 스파스 열을 반환하는 계산된 열입니다. 테이블의 열 수가 많거나 1024개를 초과하고 개별 스파스 열에서 작업하는 것이 복잡한 경우 열 집합을 사용하는 것이 좋습니다. 열 집합에는 최대 30,000개의 열이 포함될 수 있습니다.</p>
+  </div><h1 class="heading">예</h1><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h1 class="heading" xmlns="">설명</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">이 예제에서는 열 집합을 검색하는 방법을 보여 줍니다. 또한 열 집합의 XML 출력을 구문 분석하여 스파스 열에서 데이터를 가져오는 방법도 보여 줍니다.</p>
+          <p xmlns="">첫 번째 코드 목록은 서버에서 실행해야 하는 Transact-SQL입니다.</p>
+          <p xmlns="">두 번째 코드 목록은 Java 소스 코드입니다. 응용 프로그램을 컴파일하기 전에 연결 문자열의 서버 이름을 변경합니다.</p>
+        </content></div>
+      <h1 class="heading" xmlns="">코드</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>use AdventureWorks
+CREATE TABLE ColdCalling
+(
+ID int IDENTITY(1,1) PRIMARY KEY,
+[Date] date,
+[Time] time,
+PositiveFirstName nvarchar(50) SPARSE,
+PositiveLastName nvarchar(50) SPARSE,
+SpecialPurposeColumns XML COLUMN_SET FOR ALL_SPARSE_COLUMNS
+);
+GO
+
+INSERT ColdCalling ([Date], [Time])
+VALUES ('10-13-09','07:05:24')
+GO
+      
+INSERT ColdCalling ([Date], [Time], PositiveFirstName, PositiveLastName)
+VALUES ('07-20-09','05:00:24', 'AA', 'B')
+GO
+      
+INSERT ColdCalling ([Date], [Time], PositiveFirstName, PositiveLastName)
+VALUES ('07-20-09','05:15:00', 'CC', 'DD')
+GO</pre></span></div>
+        </content></div>
+      <h1 class="heading" xmlns="">코드</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>import java.sql.*;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.xml.sax.InputSource;
+
+import java.io.StringReader;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+public class SparseColumns {
+
+   public static void main(String args[]) {
+      final String connectionUrl = "jdbc:sqlserver://my_server;databaseName=AdventureWorks;integratedSecurity=true;";
+      
+      Connection conn = null;
+      Statement stmt = null;
+      ResultSet rs = null;
+      
+      try {
+         conn = DriverManager.getConnection(connectionUrl);
+         
+         stmt = conn.createStatement();
+         // Determine the column set column
+         String columnSetColName = null;
+         String strCmd = "SELECT name FROM sys.columns WHERE object_id=(SELECT OBJECT_ID('ColdCalling')) AND is_column_set = 1";
+         rs = stmt.executeQuery(strCmd);
+         
+         if (rs.next()) {
+            columnSetColName = rs.getString(1);
+            System.out.println(columnSetColName + " is the column set column!");
+         }
+         rs.close();
+
+         rs = null; 
+             
+         strCmd = "SELECT * FROM ColdCalling";
+         rs = stmt.executeQuery(strCmd);
+            
+         // Iterate through the result set
+         ResultSetMetaData rsmd = rs.getMetaData();
+         
+         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+         DocumentBuilder db = dbf.newDocumentBuilder();
+         InputSource is = new InputSource();
+         while (rs.next()) {
+            // Iterate through the columns
+            for (int i = 1; i &lt;= rsmd.getColumnCount(); ++i) {
+               String name = rsmd.getColumnName(i);
+               String value = rs.getString(i);
+   
+               // If this is the column set column
+               if (name.equalsIgnoreCase(columnSetColName)) {
+                  System.out.println(name);
+                  
+                  // Instead of printing the raw XML, parse it
+                  if (value != null) {
+                     // Add artificial root node "sparse" to ensure XML is well formed
+                     String xml = "&lt;sparse&gt;" + value + "&lt;/sparse&gt;";
+   
+                     is.setCharacterStream(new StringReader(xml));
+                     Document doc = db.parse(is);
+   
+                     // Extract the NodeList from the artificial root node that was added
+                     NodeList list = doc.getChildNodes();
+                     // This is the &lt;sparse&gt; node
+                     Node root = list.item(0); 
+                     // These are the xml column nodes
+                     NodeList sparseColumnList = root.getChildNodes(); 
+   
+                     // Iterate through the XML document
+                     for (int n = 0; n &lt; sparseColumnList.getLength(); ++n) {
+                        Node sparseColumnNode = sparseColumnList.item(n);
+                        String columnName = sparseColumnNode.getNodeName();
+                        // Note that the column value is not in the sparseColumNode, it is the value of the first child of it
+                        Node sparseColumnValueNode = sparseColumnNode.getFirstChild();
+                        String columnValue = sparseColumnValueNode.getNodeValue();
+                        
+                        System.out.println("\t" + columnName + "\t: " + columnValue);
+                     }
+                  }
+               } else {   // Just print the name + value of non-sparse columns
+                  System.out.println(name + "\t: " + value);
+               }
+            }
+            System.out.println();//New line between rows
+         }
+      } catch (Exception e) {
+         e.printStackTrace();
+      } finally {
+         if (rs != null) {
+            try {
+               rs.close();
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+         }
+         if (stmt != null) {
+            try {
+               stmt.close();
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+         }
+         if (conn != null) {
+            try {
+               conn.close();
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+         }
+      }
+   }      
+}</pre></span></div>
+        </content></div>
+    </sections></div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="e1592499-b87b-45ee-bab8-beaba8fde841.htm">JDBC 드라이버로 성능 및 안정성 개선</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

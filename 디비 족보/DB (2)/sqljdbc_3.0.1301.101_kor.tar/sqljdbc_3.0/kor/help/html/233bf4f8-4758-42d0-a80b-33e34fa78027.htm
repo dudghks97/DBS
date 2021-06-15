@@ -1,0 +1,94 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>setFetchSize 메서드(ISQLServerResultSet)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">setFetchSize 메서드(ISQLServerResultSet)</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>이 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 개체에 추가 행이 필요할 때 데이터베이스에서 인출할 행 수에 관한 힌트를 JDBC 드라이버에 제공합니다.</p>
+  </div><h1 class="heading">구문</h1><div id="syntaxSection" class="section"><div class="sampleCode"><span codeLanguage="other"><pre>
+public void <b>setFetchSize</b>(int <i>rows</i>)</pre></span></div><h1 class="heading">매개 변수</h1><div id="parametersSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        <i>rows</i>
+      </p>
+      <p xmlns="">인출할 행 수를 나타내는 <b>int</b>입니다.</p>
+    </content>
+  </div></div><h1 class="heading">예외</h1><div id="exceptionsSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        <a href="af5ef257-7cf6-4db3-b1ee-07d22d82bef1.htm">SQLServerException</a>
+      </p>
+    </content>
+  </div><h1 class="heading">설명</h1><div id="remarksSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">이 <b>setFetchSize</b> 메서드는 java.sql.ResultSet 인터페이스의 <b>setFetchSize</b> 메서드에 의해 지정됩니다.</p>
+      <p xmlns="">지정된 인출 크기가 0이면 JDBC 드라이버는 이 값을 무시하고 필요한 인출 크기를 예측합니다. 기본값은 해당 결과 집합을 만든 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 개체에 의해 설정됩니다. 인출 크기는 언제든지 변경할 수 있습니다.</p>
+      <p xmlns="">이 메서드는 서버 커서의 블록 인출 크기를 변경하며, 다음에 JDBC 드라이버에서 sp_cursorfetch를 호출해야 할 때 적용됩니다. 인출 크기를 0으로 설정하면 현재 사용 중인 커서 유형의 기본 인출 크기가 복원됩니다.</p>
+    </content>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet 클래스</a><br /><a href="2a438d5d-2d6a-46a0-a2ae-f35fbae4a472.htm">ISQLServerResultSet 멤버</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

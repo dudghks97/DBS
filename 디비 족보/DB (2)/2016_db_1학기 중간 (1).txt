@@ -1,0 +1,52 @@
+where takes.year = 2009 and semester = 'Spring' and
+	takes.grade is not null and 
+	takes.grade <>'F'
+
+
+/*개설강좌수가 10개를 초과한 학년도와 해당학년도의 개설강좌수를 파악하는 SQL을 작성하시오*/
+select year, count(*) as cnt
+from section
+group by year
+having count(*) > 10
+
+
+/*교수별로 지도하고 있는 학생들의 이름과 이들의 총이수학점을 검색하고자 한다. 즉 history 학과에 소속된 교수가 지도하고있는 학생들의 이름과 총 이수학점을 지도교수 이름과 함께(즉, 지도교수 이름에 order by를 적용하여)
+검색하는 SQL을 작성하시오 단, nested SQL을 사용하지 말고 from 절에 세개의 테이블을 cartesian product하여 사용하시오.*/
+select I.name, S.name, S.tot_cred
+from advisor A, instructor I, student S
+where	I.dept_name = 'Accounting' and
+		I.ID = A.i_id and A.s_id = S.ID
+order by I.name
+
+/*2009학년도에는 강의를 맡지않은 교수들의 숫자를 학과별로 검색하는 SQL을 작성하시오. where 절의 nested SQL에서 IN/NOT IN 기능을 사용하시오.*/
+select dept_name, count(*) cnt
+from instructor
+where ID not in(select ID
+				from teaches
+				where year = 2009)
+group by dept_name
+
+
+/*History 학과에서 운영중인 교과목의 개설강좌를 1개이상 이수하여 성적을 받은 학생들의 이름과 소속학과를 검색하는 sql을 작성하시오. 단, nested SQL의 EXISTS 혹은 NOT EXISTS를 이용하여 SQL을 작성하시오.*/
+select S.name, S.dept_name
+from student S
+where exists((select course_id
+			from course
+			where dept_name = 'Accounting')
+			intersect
+			(select course_id
+			from takes T
+			where S.ID = T.ID))
+
+
+/*2008학년도 봄학기에 강좌를 2개이상 맡았던 교수가 소속된 학과의 학과명을 검색하는 SQL을 작성하시오. 단, from 절에 derived relation 기능을 사용하고 이 derived relation을 instructor테이블과 cartesian product 하는 방식으로 from 절을 
+구성하여 SQL을 작성하시오.*/
+select instructor.ID, instructor.dept_name
+from (select ID
+	from teaches
+	where year = 2008 and semester = 'Spring'
+	group by ID
+	having count(*) >=2) as CNT2(ID), instructor
+where CNT2.ID = instructor.ID
+
+

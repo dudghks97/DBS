@@ -1,0 +1,58 @@
+1. SmallDB
+select name, dept_name, tot_cred
+from	student
+where	dept_name = 'Comp. Sci.'
+--------------------------------------
+2. S
+select count (distinct student.ID) as 'student_count'
+from takes, student
+where takes.ID = student.ID and semester = 'Spring' and year = 2010
+--------------------------------------------------------------------
+3. S
+select	count (course_id) as 'course_count'
+from	instructor, teaches
+where	instructor.ID = teaches.ID and dept_name = 'Comp. Sci.' and year = 2010 and semester = 'Spring'
+-----------------------------------------------------------------------------------------------------------------
+4. S
+select count (course_id) as 'course_id_count'
+from teaches
+where  semester = 'Spring' and year = 2010 and ID in 
+ (select ID
+from instructor
+where dept_name = 'Comp. Sci.')
+--------------------------------------------------
+5. S
+select	classroom.room_number, count (course_id) as 'course_id_count'
+from	section, classroom
+where	section.room_number = classroom.room_number and year = 2010 and semester = 'Spring' and capacity >= 40 
+group by classroom.room_number
+---------------------------------------------------------------------------
+6. S
+select year, count (course_id) as 'course_id_count'
+from	section
+group by year
+-------------------------------------------------------------------------
+7. S
+select	year, grade, count (ID) as 'stuedent_count'
+from	takes
+where	grade is not null
+group by year, grade
+order by year, grade
+==================================================================
+8. L
+select	count (course_id) as 'course_count'
+from	teaches
+where	year = 2004 and semester = 'Fall' and ID in
+(
+select	ID
+from	instructor
+where	dept_name = 'Finance'
+)
+============================================
+9. S
+select instructor.name, instructor.ID, avg(tot_cred) as 'avg_tot_grade'
+from instructor, student, advisor
+where instructor.ID = advisor.i_ID and student.ID = advisor.s_ID and instructor.dept_name = 'Comp. Sci.'
+group by instructor.name, instructor.ID 
+order by instructor.name, instructor.ID
+

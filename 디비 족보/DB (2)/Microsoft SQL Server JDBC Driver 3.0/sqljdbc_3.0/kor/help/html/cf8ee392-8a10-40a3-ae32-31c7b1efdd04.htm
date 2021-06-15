@@ -1,0 +1,138 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>연결 사용</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">연결 사용</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>다음 섹션에서는 Microsoft SQL Server JDBC 드라이버의 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 클래스를 사용하여 SQL Server 데이터베이스에 연결하는 다양한 방법의 예를 보여 줍니다. </p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+      JDBC 드라이버를 사용하여 SQL Server에 연결하는 데 문제가 있으면 <a href="bfba0b49-2e1f-411d-a625-d25fad9ea12d.htm">연결 문제 해결</a>에서 문제 해결을 위한 제안 사항을 확인하십시오.<p />
+    </div>
+  </div><h1 class="heading">DriverManager 클래스를 사용한 연결</h1><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">SQL Server 데이터베이스에 연결하는 가장 간단한 방식은 다음과 같이 JDBC 드라이버를 로드하고 <b>DriverManager</b> 클래스의 <b>getConnection</b> 메서드를 호출하는 것입니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+String connectionUrl = "jdbc:sqlserver://localhost;database=AdventureWorks;integratedSecurity=true;"
+Connection con = DriverManager.getConnection(connectionUrl);</pre></span></div>
+      <p xmlns="">이 기법에서는 드라이버 목록에 있는 사용 가능한 드라이버 중 주어진 URL로 연결할 수 있는 첫 번째 드라이버를 사용하여 데이터베이스에 연결합니다.</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        sqljdbc4.jar 클래스 라이브러리를 사용할 때 응용 프로그램은 <b>Class.forName</b> 메서드를 사용하여 드라이버를 명시적으로 등록 또는 로드할 필요가 없습니다. <b>DriverManager</b> 클래스의 <b>getConnection</b> 메서드가 호출되면 등록된 JDBC 드라이버 집합에서 적합한 드라이버가 검색됩니다. 자세한 내용은 JDBC 드라이버 사용을 참조하십시오.<p />
+      </div>
+    </content></div><h1 class="heading">SQLServerDriver 클래스를 사용한 연결 만들기</h1><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><b>DriverManager</b>에 대해 드라이버 목록에서 특정 드라이버를 지정하려면 다음과 같이 <a href="fbdceae5-7e7b-4edb-8c33-c701ca6b2d53.htm">SQLServerDriver</a> 클래스의 <a href="43813a4c-1cc7-4659-ba27-f1786f1371eb.htm">connect</a> 메서드를 사용하여 데이터베이스에 연결합니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Driver d = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+String connectionUrl = "jdbc:sqlserver://localhost;database=AdventureWorks;integratedSecurity=true;"
+Connection con = d.connect(connectionUrl, new Properties());</pre></span></div>
+    </content></div><h1 class="heading">SQLServerDataSource 클래스를 사용한 연결</h1><div id="sectionSection2" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a> 클래스를 사용하여 연결하려면 다음과 같이 <a href="7f520e96-5313-468f-b987-535ddaea027e.htm">getConnection</a> 메서드를 호출하기 전에 클래스의 다양한 setter 메서드를 사용합니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>SQLServerDataSource ds = new SQLServerDataSource();
+ds.setUser("MyUserName");
+ds.setPassword("*****");
+ds.setServerName("localhost");
+ds.setPortNumber(1433); 
+ds.setDatabaseName("AdventureWorks");
+Connection con = ds.getConnection();</pre></span></div>
+    </content></div><h1 class="heading">특정 데이터 원본을 대상으로 한 연결</h1><div id="sectionSection3" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">특정 데이터 원본을 대상으로 하는 데이터베이스 연결을 설정해야 하는 경우 여러 가지 접근 방식을 사용할 수 있습니다. 각 접근 방식은 연결 URL을 사용하여 설정하는 속성에 따라 달라집니다.</p>
+      <p xmlns="">원격 서버의 기본 인스턴스에 연결하려면 다음을 사용합니다.</p>
+      <p xmlns="">
+        <code>String url = "jdbc:sqlserver://MyServer;integratedSecurity=true;"</code>
+      </p>
+      <p xmlns="">서버의 특정 포트에 연결하려면 다음을 사용합니다.</p>
+      <p xmlns="">
+        <code>String url = "jdbc:sqlserver://MyServer:1533;integratedSecurity=true;"</code>
+      </p>
+      <p xmlns="">서버의 명명된 인스턴스에 연결하려면 다음을 사용합니다.</p>
+      <p xmlns="">
+        <code>String url = "jdbc:sqlserver://209.196.43.19;instanceName=INSTANCE1;integratedSecurity=true;"</code>
+      </p>
+      <p xmlns="">서버의 특정 데이터베이스에 연결하려면 다음을 사용합니다.</p>
+      <p xmlns="">
+        <code>String url = "jdbc:sqlserver://172.31.255.255;database=AdventureWorks;integratedSecurity=true;"</code>
+      </p>
+      <p xmlns="">더 많은 연결 URL 예를 확인하려면 <a href="44996746-d373-4f59-9863-a8a20bb8024a.htm">연결 URL 작성</a>을 참조하십시오.</p>
+    </content></div><h1 class="heading">사용자 지정 로그인 제한 시간이 있는 연결</h1><div id="sectionSection4" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">서버 부하나 네트워크 트래픽을 조절해야 하는 경우 다음과 같이 초 단위의 세부적인 로그인 제한 시간이 있는 연결을 설정할 수 있습니다.</p>
+      <p xmlns="">
+        <code>String url = "jdbc:sqlserver://MyServer;loginTimeout=90;integratedSecurity=true;"</code>
+      </p>
+    </content></div><h1 class="heading">응용 프로그램 수준 ID가 있는 연결</h1><div id="sectionSection5" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">로깅 및 프로파일링을 사용해야 하는 경우 다음과 같이 연결을 특정 응용 프로그램에서 시작된 것으로 식별해야 합니다.</p>
+      <p xmlns="">
+        <code>String url = "jdbc:sqlserver://MyServer;applicationName=MYAPP.EXE;integratedSecurity=true;"</code>
+      </p>
+    </content></div><h1 class="heading">연결 닫기</h1><div id="sectionSection6" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">다음과 같이 <b>SQLServerConnection</b> 클래스의 <a href="f0f26585-bdf7-4737-b434-8c7e115c8e94.htm">close</a> 메서드를 호출하여 데이터베이스 연결을 명시적으로 닫을 수 있습니다.</p>
+      <p xmlns="">
+        <code>con.close();</code>
+      </p>
+      <p xmlns="">이렇게 하면 <b>SQLServerConnection</b> 개체가 사용하고 있는 데이터베이스 리소스가 해제되거나 연결이 풀링 시나리오의 연결 풀에 반환됩니다.</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        또한 <b>close</b> 메서드를 호출하면 보류 중인 모든 트랜잭션이 롤백됩니다.<p />
+      </div>
+    </content></div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="94bcfbe3-f00e-4774-bda8-bb7577518fec.htm">JDBC 드라이버로 SQL Server에 연결</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

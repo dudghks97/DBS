@@ -1,0 +1,115 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>큰 데이터 작업</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">큰 데이터 작업</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>Microsoft SQL Server 2005 JDBC 드라이버 버전 1.2 이상에서는 서버 커서 오버헤드 없이 모든 종류의 큰 값 데이터를 검색할 수 있는 선택 버퍼링이 지원됩니다. 선택 버퍼링을 사용하면 Microsoft SQL Server JDBC 드라이버는 SQL Server에서 문 실행 결과를 한 번에 모두 검색하는 것이 아니라 응용 프로그램에 필요할 때 검색합니다. 또한 이 드라이버는 응용 프로그램에서 더 이상 액세스할 수 없는 결과를 즉시 삭제합니다.</p>
+    <p>Microsoft SQL Server 2005 JDBC 드라이버 버전 1.2에서 버퍼링 모드의 기본값은 "<b>full</b>"입니다. 즉 응용 프로그램에서 연결 속성 또는 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 개체의 <a href="9f489835-6cda-4c8c-b139-079639a169cf.htm">setResponseBuffering</a> 메서드를 사용하여 "responseBuffering" 연결 속성을 "<b>adaptive</b>"로 설정하지 않은 경우 이 드라이버에서는 전체 결과를 서버에서 한 번에 읽어오는 동작이 지원됩니다. 선택 버퍼링을 사용하려면 응용 프로그램에서 명시적으로 "responseBuffering" 연결 속성을 "<b>adaptive</b>"로 설정해야 합니다.</p>
+    <p>Microsoft SQL Server JDBC 드라이버 버전 2.0 이상에서는 <b>adaptive</b> 값이 기본 버퍼링 모드이며 JDBC 드라이버는 필요에 따라 가능한 최소한의 데이터를 버퍼링합니다. 선택 버퍼링 사용에 대한 자세한 내용은 <a href="92d4e3be-c3e9-4732-9a60-b57f4d0f7cb7.htm">선택 버퍼링 사용</a>을 참조하십시오.</p>
+    <p> 이 섹션의 항목에서는 SQL Server 데이터베이스에서 큰 값 데이터를 검색하는 데 사용할 수 있는 여러 가지 방법에 대해 설명합니다. </p>
+  </div><h1 class="heading">단원 내용</h1><div id="inThisSectionSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              항목
+            </th>
+            <th>
+              설명
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="6c986144-3854-4352-8331-e79eccbefc28.htm">큰 데이터 읽기 샘플</a>
+            </p>
+          </td>
+          <td>
+            <p>SQL 문을 사용하여 큰 값 데이터를 검색하는 방법에 대해 설명합니다. </p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="58c76635-a117-4661-8781-d6cb231c5809.htm">저장 프로시저로 큰 데이터 읽기 샘플</a>
+            </p>
+          </td>
+          <td>
+            <p>큰 CallableStatement OUT 매개 변수 값을 검색하는 방법에 대해 설명합니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="76ecc05f-a77d-40a2-bab9-91a7fcf17347.htm">큰 데이터 업데이트 샘플</a>
+            </p>
+          </td>
+          <td>
+            <p>데이터베이스에서 큰 값 데이터를 업데이트하는 방법에 대해 설명합니다.</p>
+          </td>
+        </tr></table>
+    </content>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="e136b87c-a138-45d6-8c3e-bcef94b7e483.htm">샘플 JDBC 드라이버 응용 프로그램</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

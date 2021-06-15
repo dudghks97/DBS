@@ -1,0 +1,75 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>개체가 사용되고 있지 않을 때 닫기</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">개체가 사용되고 있지 않을 때 닫기</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>Microsoft SQL Server JDBC 드라이브의 개체, 특히 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a>이나 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>, <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 또는 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a>와 같은 <b>Statement</b> 개체 중 하나를 사용할 경우 개체가 더 이상 필요하지 않으면 <b>close</b> 메서드를 사용하여 개체를 명시적으로 닫아야 합니다. 이를 통해 Java Virtual Machine 가비지 수집기가 비울 때까지 기다리는 대신 가능한 빨리 드라이버 및 서버 리소스를 비워 성능이 향상됩니다. </p>
+    <p>개체 닫기는 스크롤 잠금을 사용할 때 서버에서 훌륭한 동시성을 유지 관리하는 데 특히 중요합니다. 마지막을 액세스한 인출 버퍼의 스크롤 잠금은 결과 집합이 닫힐 때까지 보존됩니다. 이와 유사하게 명령문 준비 핸들은 문이 닫힐 때까지 보존됩니다. 여러 명령문에 대한 연결을 다시 사용할 경우 범위 밖으로 벗어나게 하기 전에 명령문을 닫으면 서버가 준비 핸들을 이전에 정리할 수 있습니다.</p>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="e1592499-b87b-45ee-bab8-beaba8fde841.htm">JDBC 드라이버로 성능 및 안정성 개선</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

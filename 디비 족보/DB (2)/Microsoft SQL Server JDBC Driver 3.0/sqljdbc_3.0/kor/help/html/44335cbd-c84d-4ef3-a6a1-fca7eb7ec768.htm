@@ -1,0 +1,227 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>getFunctions 메서드(SQLServerDatabaseMetaData)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">getFunctions 메서드(SQLServerDatabaseMetaData)</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>시스템 및 사용자 함수에 대한 설명을 검색합니다.</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+      이 기능은 Microsoft SQL Server JDBC 드라이버 버전 2.0에 새로 도입된 기능입니다.<p />
+    </div>
+  </div><h1 class="heading">구문</h1><div id="syntaxSection" class="section"><div class="sampleCode"><span codeLanguage="other"><pre>
+public ResultSet <b>getFunctions</b>(java.lang.String <i>catalog</i>,
+                       java.lang.String <i>schemaPattern</i>,
+                       java.lang.String <i>functionNamePattern</i>)</pre></span></div><h1 class="heading">매개 변수</h1><div id="parametersSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        <i>catalog</i>
+      </p>
+      <p xmlns="">데이터베이스의 카탈로그 이름입니다. 빈 문자열("")을 지정하면 결과에는 카탈로그 없이 함수만 포함됩니다. <b>null</b>을 지정하면 검색에 카탈로그 이름이 사용되지 않습니다.</p>
+      <p xmlns="">
+        <i>schemaPattern</i>
+      </p>
+      <p xmlns="">스키마의 이름입니다. 빈 문자열("")을 지정하면 결과에는 스키마 없이 함수만 포함됩니다. <b>null</b>을 지정하면 검색에 스키마 이름이 사용되지 않습니다.</p>
+      <p xmlns="">
+        <i>functionNamePattern</i>
+      </p>
+      <p xmlns="">함수의 이름입니다. </p>
+    </content>
+  </div></div><h1 class="heading">반환 값</h1><div id="returnValueSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 개체입니다.</p>
+    </content>
+  </div><h1 class="heading">예외</h1><div id="exceptionsSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        <a href="af5ef257-7cf6-4db3-b1ee-07d22d82bef1.htm">SQLServerException</a>
+      </p>
+    </content>
+  </div><h1 class="heading">설명</h1><div id="remarksSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">이 <b>getFunctions</b> 메서드는 java.sql.DatabaseMetaData 인터페이스의 <b>getFunctions</b> 메서드에 의해 지정됩니다.</p>
+      <p xmlns="">이 메서드는 지정된 스키마 및 함수 이름과 일치하는 시스템 및 사용자 함수만 반환합니다. </p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>중요: </b>
+        반환된 결과 집합에는 호출 사용자에게 실행 권한이 없는 함수가 포함될 수 있습니다.<p />
+      </div>
+      <p xmlns="">각 함수 설명에는 다음과 같은 열이 포함됩니다.</p>
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th colspan="">
+              이름
+            </th>
+            <th colspan="">
+              유형
+            </th>
+            <th colspan="">
+              설명
+            </th>
+          </tr><tr>
+          <td colspan="">
+            <p>FUNCTION_CAT</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>함수가 있는 데이터베이스의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>FUNCTION_SCHEM</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>함수가 있는 스키마의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>FUNCTION_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>함수의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>NUM_INPUT_PARAMS</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>나중에 사용하기 위해 예약되었으며, 현재는 -1 값을 반환합니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>NUM_OUTPUT_PARAMS</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>나중에 사용하기 위해 예약되었으며, 현재는 -1 값을 반환합니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>NUM_RESULT_SETS</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>나중에 사용하기 위해 예약되었으며, 현재는 -1 값을 반환합니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>REMARKS</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>함수에 대한 설명입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>FUNCTION_TYPE</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>short</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>함수의 형식입니다. 다음 값 중 하나일 수 있습니다.</p>
+            <p>SQL_PT_UNKNOWN(0)</p>
+            <p>SQL_PT_PROCEDURE(1)</p>
+            <p>SQL_PT_FUNCTION(2)</p>
+            <p>
+            </p>
+          </td>
+        </tr></table>
+      <p xmlns="">반환된 결과 집합의 모든 설명은 FUNCTION_CAT, FUNCTION_SCHEM, FUNCTION_NAME 및 SPECIFIC_NAME 순으로 정렬됩니다.</p>
+    </content>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="8b8049d0-8c6d-4476-866b-098709f37eec.htm">SQLServerDatabaseMetaData 클래스</a><br /><a href="327ba0bc-438a-494c-b119-1cd4a096bb58.htm">SQLServerDatabaseMetaData 멤버</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

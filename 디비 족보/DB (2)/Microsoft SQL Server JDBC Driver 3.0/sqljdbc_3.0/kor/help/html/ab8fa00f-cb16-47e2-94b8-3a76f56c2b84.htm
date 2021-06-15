@@ -1,0 +1,230 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>데이터 형식 차이 이해</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">데이터 형식 차이 이해</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>Java 프로그래밍 언어 데이터 형식과 SQL Server 데이터 형식 간에는 많은 차이가 있습니다. 그러나 Microsoft SQL Server JDBC 드라이버는 다양한 형식 변환 기능을 통해 이러한 차이를 손쉽게 극복합니다. </p>
+  </div><h1 class="heading">문자 형식</h1><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">JDBC 문자열 데이터 형식은 <b>CHAR</b>, <b>VARCHAR</b> 및 <b>LONGVARCHAR</b>입니다. Microsoft SQL Server JDBC 드라이버 버전 2.0 이상에서는 JDBC 4.0 API가 지원됩니다. JDBC 4.0에서는 JDBC 문자열 데이터 형식이 <b>NCHAR</b>, <b>NVARCHAR</b> 및 <b>LONGNVARCHAR</b>가 될 수도 있습니다. 이러한 새 문자열 형식은 유니코드 형식으로 Java 네이티브 문자 형식을 유지하므로 ANSI와 Unicode 간 변환을 수행할 필요가 없습니다.</p>
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th colspan="">
+              형식
+            </th>
+            <th colspan="">
+              설명
+            </th>
+          </tr><tr>
+          <td colspan="">
+            <p>고정 길이</p>
+          </td>
+          <td colspan="">
+            <p>SQL Server <b>char</b> 및 <b>nchar</b> 데이터 형식은 JDBC <b>CHAR</b> 및 <b>NCHAR</b> 형식에 직접 매핑됩니다. 이는 해당 열에 SET ANSI_PADDING ON이 설정된 경우 서버에서 패딩을 제공하는 고정 길이 형식입니다. <b>nchar</b>에 대해서는 패딩이 항상 설정되어 있지만 <b>char</b>에 대해서는 그렇지 않습니다. 서버 char 열이 패딩되지 않은 경우 JDBC 드라이버에서 패딩을 추가합니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>가변 길이</p>
+          </td>
+          <td colspan="">
+            <p>SQL Server <b>varchar</b> 및 <b>nvarchar</b> 형식은 각각 JDBC <b>VARCHAR</b> 및 <b>NVARCHAR</b> 형식에 직접 매핑됩니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>Long</p>
+          </td>
+          <td colspan="">
+            <p>SQL Server <b>text</b> 및 <b>ntext</b> 형식은 각각 JDBC <b>LONGVARCHAR</b> 및 <b>LONGNVARCHAR</b> 형식에 매핑됩니다. 이러한 형식은 SQL Server 2005부터는 더 이상 사용되지 않으므로 대신 큰 값 형식인 <b>varchar(max)</b> 또는 <b>nvarchar(max)</b>를 사용해야 합니다.</p>
+            <p><b>text</b> 및 <b>ntext</b> 서버 열에 대해 <b>update&lt;Numeric Type&gt;</b> 및 <a href="4993dfe1-2232-4b3c-b931-dfdb35dd225a.htm">updateObject(int, java.lang.Object)</a> 메서드를 사용하면 오류가 발생합니다. 그러나 <b>text</b> 및 <b>ntext</b> 서버 열에 대해 <a href="93a2b22c-82b4-48c7-a428-369ebe98a372.htm">setObject</a> 메서드를 지정된 문자 변환 형식과 함께 사용할 수 있습니다.</p>
+          </td>
+        </tr></table>
+    </content></div><h1 class="heading">이진 문자열 형식</h1><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">JDBC 이진 문자열 형식은 <b>BINARY</b>, <b>VARBINARY</b> 및 <b>LONGVARBINARY</b>입니다. </p>
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th colspan="">
+              형식
+            </th>
+            <th colspan="">
+              설명
+            </th>
+          </tr><tr>
+          <td colspan="">
+            <p>고정 길이</p>
+          </td>
+          <td colspan="">
+            <p>SQL Server <b>binary</b> 형식은 JDBC <b>BINARY</b> 형식에 직접 매핑됩니다. 이는 해당 열에 SET ANSI_PADDING ON이 설정된 경우 서버에서 패딩을 제공하는 고정 길이 형식입니다. 서버 char 열이 패딩되지 않으면 JDBC 드라이버가 패딩을 추가합니다.</p>
+            <p>SQL Server <b>timestamp</b> 형식은 고정 길이가 8바이트인 JDBC <b>BINARY</b> 형식입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>가변 길이</p>
+          </td>
+          <td colspan="">
+            <p>SQL Server <b>varbinary</b> 형식은 JDBC <b>VARBINARY</b> 형식에 매핑됩니다.</p>
+            <p>SQL Server의 <b>udt</b> 형식은 JDBC에 <b>VARBINARY</b> 형식으로 매핑됩니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>Long</p>
+          </td>
+          <td colspan="">
+            <p>SQL Server <b>image</b> 형식은 JDBC <b>LONGVARBINARY</b> 형식에 매핑됩니다. 이 형식은 SQL Server 2005부터는 사용되지 않으므로 대신 큰 값 형식인 <b>varbinary(max)</b>를 사용해야 합니다.</p>
+          </td>
+        </tr></table>
+    </content></div><h1 class="heading">정확한 숫자 형식</h1><div id="sectionSection2" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">JDBC의 정확한 숫자 형식은 해당되는 SQL Server 형식에 바로 매핑됩니다.</p>
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th colspan="">
+              형식
+            </th>
+            <th colspan="">
+              설명
+            </th>
+          </tr><tr>
+          <td colspan="">
+            <p>BIT</p>
+          </td>
+          <td colspan="">
+            <p>JDBC <b>BIT</b> 형식은 단일 비트(0 또는 1)를 나타냅니다. 이 형식은 SQL Server <b>bit</b> 형식에 매핑됩니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>TINYINT</p>
+          </td>
+          <td colspan="">
+            <p>JDBC <b>TINYINT</b> 형식은 1바이트를 나타내며 SQL Server <b>tinyint</b> 형식에 매핑됩니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SMALLINT</p>
+          </td>
+          <td colspan="">
+            <p>JDBC <b>SMALLINT</b> 형식은 부호 있는 16비트 정수를 나타내며 SQL Server <b>smallint</b> 형식에 매핑됩니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>INTEGER</p>
+          </td>
+          <td colspan="">
+            <p>JDBC <b>INTEGER</b> 형식은 부호 있는 32비트 정수를 나타내며 SQL Server <b>int</b> 형식에 매핑됩니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>BIGINT</p>
+          </td>
+          <td colspan="">
+            <p>JDBC <b>BIGINT</b> 형식은 부호 있는 64비트 정수를 나타내며 SQL Server <b>bigint</b> 형식에 매핑됩니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>NUMERIC</p>
+          </td>
+          <td colspan="">
+            <p>JDBC <b>NUMERIC</b> 형식은 동일한 전체 자릿수 값을 포함하는 고정 전체 자릿수 소수 값을 나타냅니다. <b>NUMERIC</b> 형식은 SQL Server <b>numeric</b> 형식에 매핑됩니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>DECIMAL</p>
+          </td>
+          <td colspan="">
+            <p>JDBC <b>DECIMAL</b> 형식은 최소한 지정된 전체 자릿수 값을 포함하는 고정 전체 자릿수 소수 값을 나타냅니다. <b>DECIMAL</b> 형식은 SQL Server <b>decimal</b> 형식에 매핑합니다.</p>
+            <p>JDBC <b>DECIMAL</b> 형식도 SQL Server <b>money</b> 및 <b>smallmoney</b> 형식에 매핑됩니다. 이 형식은 각각 8바이트와 4바이트로 저장되는 특정 고정 전체 자릿수 소수 형식입니다.</p>
+          </td>
+        </tr></table>
+    </content></div><h1 class="heading">근사 숫자 형식</h1><div id="sectionSection3" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">JDBC 근사 숫자 형식은 <b>REAL</b>, <b>DOUBLE</b> 및 <b>FLOAT</b>입니다.</p>
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th colspan="">
+              형식
+            </th>
+            <th colspan="">
+              설명
+            </th>
+          </tr><tr>
+          <td colspan="">
+            <p>REAL</p>
+          </td>
+          <td colspan="">
+            <p>JDBC <b>REAL</b> 형식의 전체 자릿수는 7(단정밀도)이며 SQL Server <b>real</b> 형식에 직접 매핑됩니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>DOUBLE</p>
+          </td>
+          <td colspan="">
+            <p>JDBC <b>DOUBLE</b> 형식의 전체 자릿수는 15(배정밀도)이며 SQL Server <b>float</b> 형식에 매핑됩니다. JDBC <b>FLOAT</b> 형식은 <b>DOUBLE</b>의 동의어입니다. <b>FLOAT</b>와 <b>DOUBLE</b>을 함께 사용할 경우 혼동될 수 있으므로 <b>DOUBLE</b>을 사용하는 것이 좋습니다.</p>
+          </td>
+        </tr></table>
+    </content></div><h1 class="heading">날짜 및 시간 형식</h1><div id="sectionSection4" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">JDBC <b>TIMESTAMP</b> 형식은 SQL Server <b>datetime</b> 및 <b>smalldatetime</b> 형식에 매핑됩니다. <b>datetime</b> 형식은 두 개의 4바이트 정수로 저장됩니다. <b>smalldatetime</b> 형식은 2바이트 small 정수와 동일한 정보(날짜 및 시간)를 포함하지만 정확도는 떨어집니다.</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        SQL Server <b>timestamp</b> 형식은 고정 길이 이진 문자열 형식이며 JDBC 시간 형식 <b>DATE</b>, <b>TIME</b> 또는 <b>TIMESTAMP</b>에 매핑되지 않습니다.<p />
+      </div>
+    </content></div><h1 class="heading">사용자 지정 형식 매핑</h1><div id="sectionSection5" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">JDBC 고급 형식(UDT, Struct 등)에 대해 <b>SQLData</b> 인터페이스를 사용하는 JDBC의 사용자 지정 형식 매핑 기능은 JDBC 드라이버에 구현되어 있지 않습니다.</p>
+    </content></div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="7802328d-4d23-4775-9573-4169b127d258.htm">JDBC 드라이버 데이터 형식 이해</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

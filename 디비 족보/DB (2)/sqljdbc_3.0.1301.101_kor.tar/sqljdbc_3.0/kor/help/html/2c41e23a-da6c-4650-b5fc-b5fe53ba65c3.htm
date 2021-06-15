@@ -1,0 +1,179 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>격리 수준 이해</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">격리 수준 이해</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>한 트랜잭션을 리소스 또는 다른 트랜잭션에서 수정한 데이터 내용으로부터 격리하는 정도를 정의하는 격리 수준을 트랜잭션에 지정할 수 있습니다. 격리 수준은 허용되는 동시성 부작용(예: 커밋되지 않은 읽기 또는 가상 읽기)의 관점에서 설명됩니다. </p>
+    <p>트랜잭션 격리 수준으로 다음 사항을 제어할 수 있습니다.</p>
+    <ul><li>
+        데이터를 읽을 때 잠금을 확보할지 여부 및 요청되는 잠금의 종류<br />
+      </li><li>
+        읽기 잠금의 보유 기간<br />
+      </li><li>
+        읽기 작업이 다른 트랜잭션에서 수정한 행을 참조하는지 여부<br />
+        <ul><li>
+            행에 대한 배타적 잠금이 해제될 때까지 차단<br />
+          </li><li>
+            문 또는 트랜잭션 시작 당시의 커밋된 행 버전 검색<br />
+          </li><li>
+            커밋되지 않은 데이터 수정 내용 읽기<br />
+          </li></ul>
+      </li></ul>
+    <p>트랜잭션 격리 수준을 선택해도 데이터 수정 내용을 보호하기 위해 획득된 잠금에는 영향을 주지 않습니다. 설정된 격리 수준에 관계없이 트랜잭션은 항상 수정하는 데이터에 대해 배타적 잠금을 얻고 해당 트랜잭션이 완료될 때까지 이 잠금을 보유합니다. 읽기 작업의 경우 트랜잭션 격리 수준은 대개 다른 트랜잭션에서 수정한 내용의 영향을 받지 않도록 보호 수준을 정의합니다.</p>
+    <p>격리 수준이 낮을수록 데이터에 동시에 액세스할 수 있는 사용자가 많아지지만 동시성 부작용(예: 커밋되지 않은 읽기 또는 업데이트 손실) 횟수도 늘어납니다. 반대로 격리 수준이 높을수록 동시성 부작용 종류가 줄어들지만 시스템 리소스가 더 많이 필요하게 되고 한 트랜잭션이 다른 트랜잭션을 차단하게 될 확률도 높아집니다. 적절한 격리 수준을 선택하려면 응용 프로그램의 데이터 무결성 요구 사항과 각 격리 수준에 의해 야기되는 오버헤드를 신중하게 평가해야 합니다. 최상위 격리 수준인 직렬화 가능의 경우 트랜잭션이 읽기 작업을 반복할 때마다 정확히 동일한 데이터를 검색하지만 다중 사용자 시스템에서 다른 사용자에게 영향을 줄 수 있는 수준의 잠금을 수행함으로써 이를 달성합니다. 최하위 격리 수준인 커밋되지 않은 읽기의 경우 다른 트랜잭션에서 수정했지만 커밋되지 않은 데이터를 검색할 수 있습니다. 커밋되지 않은 읽기에서는 모든 동시성 부작용이 발생할 수 있지만 읽기 잠금이나 버전 관리가 수행되지 않으므로 오버헤드가 최소화됩니다.</p>
+    <p>다음 표에서는 각 격리 수준에서 허용되는 동시성 부작용을 보여 줍니다.</p>
+    <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+            격리 수준
+          </th>
+          <th>
+            커밋되지 않은 읽기
+          </th>
+          <th>
+            반복하지 않는 읽기
+          </th>
+          <th>
+            가상 읽기
+          </th>
+        </tr><tr>
+        <td>
+          <p>커밋되지 않은 읽기</p>
+        </td>
+        <td>
+          <p>예</p>
+        </td>
+        <td>
+          <p>예</p>
+        </td>
+        <td>
+          <p>예</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>커밋된 읽기</p>
+        </td>
+        <td>
+          <p>아니요</p>
+        </td>
+        <td>
+          <p>예</p>
+        </td>
+        <td>
+          <p>예</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>반복 읽기</p>
+        </td>
+        <td>
+          <p>아니요</p>
+        </td>
+        <td>
+          <p>아니요</p>
+        </td>
+        <td>
+          <p>예</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>스냅숏</p>
+        </td>
+        <td>
+          <p>아니요</p>
+        </td>
+        <td>
+          <p>아니요</p>
+        </td>
+        <td>
+          <p>아니요</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>직렬화 가능</p>
+        </td>
+        <td>
+          <p>아니요</p>
+        </td>
+        <td>
+          <p>아니요</p>
+        </td>
+        <td>
+          <p>아니요</p>
+        </td>
+      </tr></table>
+    <p>두 트랜잭션이 각기 동일한 행을 검색한 다음 나중에 원래 검색한 값을 기준으로 해당 행을 업데이트할 때 발생할 수 있는 업데이트 손실을 방지하려면 반복 읽기 이상의 격리 수준에서 트랜잭션을 실행해야 합니다. 두 트랜잭션이 한 개의 UPDATE 문을 사용하여 행을 업데이트하더라도 업데이트가 이전에 검색된 값에 따라 수행되지 않을 경우 기본 격리 수준인 커밋된 읽기에서는 업데이트 손실이 발생하지 않습니다.</p>
+    <p>트랜잭션 격리 수준을 설정하는 데 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 클래스의 <a href="6a8fa4d3-5237-40f8-8a02-b40a3d7a1131.htm">setTransactionIsolation</a> 메서드를 사용할 수 있습니다. 이 메서드는 다음과 같은 연결 상수 중 하나를 기반으로 하는 <b>int</b> 값을 인수로 사용합니다.</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);</pre></span></div>
+    <p>SQL Server의 새 스냅숏 격리 수준을 사용하려면 다음과 같은 <b>SQLServerConnection</b> 상수 중 하나를 사용하십시오.</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>con.setTransactionIsolation(SQLServerConnection.TRANSACTION_SNAPSHOT);</pre></span></div>
+    <p>또는 다음을 사용하십시오.</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED + 4094);</pre></span></div>
+    <p>SQL Server 격리 수준에 대한 자세한 내용은 SQL Server 온라인 설명서에서 "데이터베이스 엔진의 격리 수준"을 참조하십시오.</p>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="afbb776f-05dc-4e79-bb25-2c340483e401.htm">JDBC 드라이버로 트랜잭션 수행</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

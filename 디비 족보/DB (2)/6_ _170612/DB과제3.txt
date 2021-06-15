@@ -1,0 +1,305 @@
+//////////////////////////////////////////////////////////// 1
+
+package jdbc;
+
+import java.sql.*;
+
+public class jdbc {
+
+	public static void main(String[] args) {
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			conn = DriverManager
+					.getConnection("jdbc:sqlserver://localhost;database=largeDB;" + "integratedSecurity=true;");
+
+			stmt = conn.createStatement();
+			
+			ResultSet rset = stmt
+					.executeQuery("select title, dept_name, credits "
+							+ "from course left outer join prereq on course.course_id = prereq.course_id "
+							+ "where prereq_id is null");
+			
+			while (rset.next()) {
+				System.out.println(rset.getString("title") + "  |  " 
+						+ rset.getString("dept_name") + "  |  " 
+						+ rset.getString("credits"));
+			}
+			
+			stmt.close();
+			conn.close();
+		} catch (SQLException | ClassNotFoundException sqle) {
+			System.out.println("SQLException : " + sqle);
+		}
+
+	}
+
+}
+
+
+
+/////////////////////////////////////////////////////////////////// 2
+
+
+package jdbc;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class jdbc {
+
+	public static void main(String[] args) {
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			conn = DriverManager
+					.getConnection("jdbc:sqlserver://localhost;database=largeDB;" + "integratedSecurity=true;");
+
+			stmt = conn.createStatement();
+			
+			ResultSet rset = stmt
+					.executeQuery("select ID, name, dept_name, i_id "
+							+ "from student, advisor "
+							+ "where student.ID = advisor.s_id  and student.tot_cred > 50");
+			String ID;
+			Scanner scan = new Scanner(System.in); 
+			
+			System.out.print("input i_id : ");
+			ID = scan.nextLine();
+						
+			while (rset.next()) {
+				if(ID.equals( rset.getString("i_id")))
+				System.out.println(rset.getString("ID") + "  |  " 
+						+ rset.getString("name") + "  |  " 
+						+ rset.getString("dept_name"));
+						
+			}
+			
+			stmt.close();
+			conn.close();
+		} catch (SQLException | ClassNotFoundException sqle) {
+			System.out.println("SQLException : " + sqle);
+		}
+
+	}
+
+}
+
+
+//////////////////////////////////
+
+package jdbc;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class jdbc {
+
+	public static void main(String[] args) {
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			conn = DriverManager
+					.getConnection("jdbc:sqlserver://localhost;database=largeDB;" + "integratedSecurity=true;");
+
+			stmt = conn.createStatement();
+			//
+			String ID;
+			Scanner scan = new Scanner(System.in); 
+			System.out.print("input i_id : ");
+			ID = scan.nextLine();
+			//
+			ResultSet rset = stmt
+					.executeQuery("select ID, name, dept_name "
+							+ "from student, advisor "
+							+ "where student.ID = advisor.s_id  and student.tot_cred > 50 " + "and i_id = " + ID);
+			
+						
+			while (rset.next()) {
+				System.out.println(rset.getString("ID") + "  |  " 
+						+ rset.getString("name") + "  |  " 
+						+ rset.getString("dept_name"));
+						
+			}
+			
+			stmt.close();
+			conn.close();
+		} catch (SQLException | ClassNotFoundException sqle) {
+			System.out.println("SQLException : " + sqle);
+		}
+
+	}
+
+}
+
+//////////////////////////////////////////////////////////////////////////// 3
+
+package jdbc;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class jdbc {
+
+	public static void main(String[] args) {
+		
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			conn = DriverManager
+					.getConnection("jdbc:sqlserver://localhost;database=largeDB;" + "integratedSecurity=true;");
+
+			stmt = conn.createStatement();
+			
+			String deptName;
+			Scanner scan = new Scanner(System.in); 
+			System.out.print("input dept_name : ");
+			deptName = scan.nextLine();			
+			
+			ResultSet rset = stmt
+					.executeQuery("select year, sum (cnt) as scnt  "
+							+ "from dept_year_course_takes_cnt  "
+							+ " where dept_name = " + "'"+deptName+"'" 
+							+ " group by year"
+							);
+			
+									
+			while (rset.next()) {
+				System.out.println(
+						rset.getString("year") + "  |  " 
+						+ rset.getString("scnt") 
+						);
+						
+			}
+			
+			stmt.close();
+			conn.close();
+		} catch (SQLException | ClassNotFoundException sqle) {
+			System.out.println("SQLException : " + sqle);
+		}
+
+	}
+
+}
+
+/////////////////////////////////////////////////////////////////////////////////// 4
+
+
+package jdbc;
+import java.sql.*;
+import java.util.Scanner;
+public class jdbc {
+	public static void main(String[] args) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			conn = DriverManager
+					.getConnection("jdbc:sqlserver://localhost;database=largeDB;"
+			+ "integratedSecurity=true;");
+			
+			conn.setAutoCommit(false);
+			
+			
+			String ID, name, deptname;
+			int totcred;
+			Scanner scan = new Scanner(System.in); 
+			
+			System.out.print("input ID : ");
+			ID = scan.nextLine();	
+			System.out.print("input name : ");
+			name = scan.nextLine();	
+			System.out.print("input dept_name : ");
+			deptname = scan.nextLine();	
+			System.out.print("input tot_cred : ");
+			totcred = scan.nextInt();
+			
+			pstmt = conn.prepareStatement(
+							"insert into student values (" 
+									+ ID + " , '" + name + "' , '"
+									+ deptname + "' , " + totcred + " ) "					
+							);
+			pstmt.execute();		
+			
+			System.out.print("1. 등록    2. 취소  : ");
+			int opt = scan.nextInt();
+			
+			if(opt == 1){
+				conn.commit();
+				System.out.println("등록되었습니다.");
+			}
+			if(opt == 2){
+				conn.rollback();
+				System.out.println("취소되었습니다.");
+			}
+			
+			pstmt.close();
+			conn.close();
+		} catch (SQLException | ClassNotFoundException  sqle) {
+			System.out.println("정상적으로 등록되지 않았습니다.");
+		}
+
+	}
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////// 5
+
+
+
+
+package jdbc;
+import java.sql.*;
+import java.util.Scanner;
+public class jdbc {
+	public static void main(String[] args) {
+
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			conn = DriverManager
+					.getConnection("jdbc:sqlserver://localhost;database=largeDB;"
+			+ "integratedSecurity=true;");
+
+			stmt = conn.createStatement();
+
+			CallableStatement cs = null;
+
+			String iName;
+			int year;
+			Scanner scan = new Scanner(System.in);
+			System.out.print("input iName : ");
+			iName = scan.nextLine();
+			System.out.print("input year : ");
+			year = scan.nextInt();
+
+			cs = conn.prepareCall("{call inst_teach_credits( ?, ?, ? ) }");
+			cs.setString(1, iName);
+			cs.setInt(2, year);
+			cs.registerOutParameter(3, java.sql.Types.INTEGER);
+			cs.execute();
+
+			int tot_teach_credits = cs.getInt(3);
+			System.out.println("tot_teach_credits : " + tot_teach_credits);
+
+			cs.close();
+			conn.close();
+		} catch (SQLException | ClassNotFoundException sqle) {
+			System.out.println("SQLException : " + sqle);
+		}
+
+	}
+
+}

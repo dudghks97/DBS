@@ -1,0 +1,85 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>getEncrypt 메서드(SQLServerDataSource)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">getEncrypt 메서드(SQLServerDataSource)</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>encrypt 속성이 사용되는지 여부를 나타내는<b> boolean </b>값을 반환합니다.</p>
+  </div><h1 class="heading">구문</h1><div id="syntaxSection" class="section"><div class="sampleCode"><span codeLanguage="other"><pre>
+public boolean <b>getEncypt</b>()</pre></span></div></div><h1 class="heading">반환 값</h1><div id="returnValueSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        encrypt가 사용되면 <b>true</b>이고, 그렇지 않으면 <b>false</b>입니다.</p>
+    </content>
+  </div><h1 class="heading">설명</h1><div id="remarksSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">encrypt 속성이 <b>true</b>로 설정되어 있으면 Microsoft SQL Server JDBC 드라이버에서는 서버에 인증서가 설치되어 있는 경우 SQL Server에서 클라이언트와 서버 간에 전송되는 모든 데이터에 대해 SSL 암호화를 사용하도록 지정합니다. </p>
+      <p xmlns="">encrypt 속성이 지정되어 있지 않거나 <b>false</b>로 설정되어 있으면 드라이버에서는 SQL Server에서 SSL 암호화를 지원하도록 지정하지 않습니다. SQL Server 인스턴스가 SSL 암호화를 사용하도록 구성되어 있지 않으면 암호화 없이 연결이 설정됩니다. SSL 암호화를 사용하도록 SQL Server 인스턴스가 구성되어 있으면 Microsoft SQL Server JDBC 드라이버는 올바르게 구성된 JVM(Java Virtual Machine)에서 실행되는 경우 자동으로 SSL 암호화를 사용합니다. 그렇지 않은 경우 연결이 종료되고 드라이버에서 오류가 발생합니다. encryption 속성이 설정되어 있지 않으면 <a href="1cdb12dd-6e6f-4bbd-8f5f-9e630f3ee2c9.htm">getEncrypt</a> 메서드는 기본값인 <b>false</b>를 반환합니다.</p>
+    </content>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource 클래스</a><br /><a href="7e749bc5-d765-4864-be2b-7822d4c20c09.htm">SQLServerDataSource 멤버</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

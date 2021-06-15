@@ -1,0 +1,108 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>데이터 형식(JDBC) 사용</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">데이터 형식(JDBC) 사용</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>Microsoft SQL Server JDBC 드라이버의 기본 기능은 Java 개발자가 SQL Server 데이터베이스에 포함된 데이터에 액세스할 수 있게 하는 것입니다. 이를 위해 JDBC 드라이버는 SQL Server 데이터 형식과 Java 언어 형식 및 개체 사이의 변환을 중재합니다.</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+      형식 간 차이점 및 Java 언어 데이터 형식으로 변환하는 방법에 대한 내용을 포함한 SQL Server 및 JDBC 드라이버 데이터 형식에 대한 자세한 내용은 <a href="7802328d-4d23-4775-9573-4169b127d258.htm">JDBC 드라이버 데이터 형식 이해</a>를 참조하십시오.<p />
+    </div>
+    <p>SQL Server 데이터 형식 작업을 위해 JDBC 드라이버에서는 <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 및 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 클래스에 대해 <b>get&lt;Type&gt;</b> 및 <b>set&lt;Type&gt;</b> 메서드를 제공하며, <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 클래스에 대해 <b>get&lt;Type&gt;</b> 및 <b>update&lt;Type&gt;</b> 메서드를 제공합니다. 어떤 메서드를 사용할지는 작업하는 데이터 형식 및 결과 집합이나 쿼리 사용 여부에 따라 달라집니다.</p>
+    <p>이 섹션의 항목에서는 JDBC 드라이버 데이터 형식을 사용하여 Java 응용 프로그램에서 SQL Server 데이터에 액세스하는 방법을 설명합니다.  </p>
+  </div><h1 class="heading">단원 내용</h1><div id="inThisSectionSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              항목
+            </th>
+            <th>
+              설명
+            </th>
+          </tr><tr>
+          <td>
+            <p>
+              <a href="59ac80cf-fc66-4493-933d-38e479c5f54d.htm">기본 데이터 형식 샘플</a>
+            </p>
+          </td>
+          <td>
+            <p>결과 집합 getter 메서드를 사용하여 기본 SQL Server 데이터 형식 값을 검색하는 방법 및 결과 집합 업데이트 메서드를 사용하여 이러한 값을 업데이트하는 방법을 설명합니다.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>
+              <a href="8f2ff25b-71fd-46d7-b6de-d656095d2aad.htm">SQLXML 데이터 형식 샘플</a>
+            </p>
+          </td>
+          <td>
+            <p>XML 데이터를 관계형 데이터베이스에 저장하는 방법, XML 데이터를 데이터베이스에서 검색하는 방법 및 <b>SQLXML</b> Java 데이터 형식으로 XML 데이터를 구문 분석하는 방법을 보여 줍니다.</p>
+          </td>
+        </tr></table>
+    </content>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="e136b87c-a138-45d6-8c3e-bcef94b7e483.htm">샘플 JDBC 드라이버 응용 프로그램</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

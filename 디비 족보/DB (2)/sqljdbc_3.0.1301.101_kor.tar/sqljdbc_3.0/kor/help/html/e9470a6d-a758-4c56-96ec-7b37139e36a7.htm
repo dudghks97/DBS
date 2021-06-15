@@ -1,0 +1,105 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>매개 변수가 없는 저장 프로시저 사용</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">매개 변수가 없는 저장 프로시저 사용</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>호출할 수 있는 SQL Server 저장 프로시저 중 가장 간단한 형식은 매개 변수가 없고 단일 결과 집합을 반환하는 형식입니다. Microsoft SQL Server JDBC 드라이버는 이러한 종류의 저장 프로시저를 호출하여 반환되는 데이터를 처리하는 데 사용할 수 있는 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 클래스를 제공합니다. </p>
+    <p>JDBC 드라이버를 사용하여 매개 변수가 없는 저장 프로시저를 호출하려면 <code> call </code> SQL 이스케이프 시퀀스를 사용해야 합니다. 매개 변수가 없는 <code> call </code> 이스케이프 시퀀스의 구문은 다음과 같습니다. </p>
+    <p>
+      <code>{call procedure-name}</code>
+    </p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+      SQL 이스케이프 시퀀스에 대한 자세한 내용은 <a href="00f9e25a-088e-4ac6-aa75-43eacace8f03.htm">SQL 이스케이프 시퀀스 사용</a>을 참조하십시오.<p />
+    </div>
+    <p>이에 대한 예로 SQL Server 2005 AdventureWorks 샘플 데이터베이스에 다음 저장 프로시저를 만듭니다.</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>CREATE PROCEDURE GetContactFormalNames 
+AS
+BEGIN
+   SELECT TOP 10 Title + ' ' + FirstName + ' ' + LastName AS FormalName 
+   FROM Person.Contact
+END</pre></span></div>
+    <p>이 저장 프로시저는 하나의 데이터 열이 들어 있는 단일 결과 집합을 반환하며 이는 Person.Contact 테이블의 상위 10개 연락처의 제목, 이름, 성으로 구성되어 있습니다. </p>
+    <p>다음 예제에서는 AdventureWorks 샘플 데이터베이스에 대해 열린 연결을 함수로 전달하고 <a href="599cf463-e19f-4baa-bacb-513cad7c6cd8.htm">executeQuery</a> 메서드를 사용하여 GetContactFormalNames 저장 프로시저를 호출합니다.</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>public static void executeSprocNoParams(Connection con) {
+   try {
+      Statement stmt = con.createStatement();
+      ResultSet rs = stmt.executeQuery("{call dbo.GetContactFormalNames}");
+
+      while (rs.next()) {
+         System.out.println(rs.getString("FormalName"));
+      }
+      rs.close();
+      stmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}</pre></span></div>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="0041f9e1-09b6-4487-b052-afd636c8e89a.htm">저장 프로시저가 있는 문 사용</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

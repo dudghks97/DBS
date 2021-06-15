@@ -1,0 +1,503 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>getProcedureColumns 메서드(SQLServerDatabaseMetaData)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">getProcedureColumns 메서드(SQLServerDatabaseMetaData)</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>저장 프로시저 매개 변수 및 결과 열에 대한 설명을 검색합니다.</p>
+  </div><h1 class="heading">구문</h1><div id="syntaxSection" class="section"><div class="sampleCode"><span codeLanguage="other"><pre>
+public java.sql.ResultSet <b>getProcedureColumns</b>(java.lang.String <i>sCatalog</i>,
+                                              java.lang.String <i>sSchema</i>,
+                                              java.lang.String <i>proc</i>,
+                                              java.lang.String <i>col</i>)</pre></span></div><h1 class="heading">매개 변수</h1><div id="parametersSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        <i>sCatalog</i>
+      </p>
+      <p xmlns="">카탈로그 이름이 들어 있는 <b> String </b>입니다. 이 매개 변수에 null을 제공하면 카탈로그 이름을 사용할 필요가 없음을 나타냅니다.</p>
+      <p xmlns="">
+        <i>sSchema</i>
+      </p>
+      <p xmlns="">스키마 이름 패턴이 들어 있는 <b> String </b>입니다. 이 매개 변수에 null을 제공하면 스키마 이름을 사용할 필요가 없음을 나타냅니다.</p>
+      <p xmlns="">
+        <i>proc</i>
+      </p>
+      <p xmlns="">프로시저 이름 패턴이 들어 있는 <b> String </b>입니다.</p>
+      <p xmlns="">
+        <i>col</i>
+      </p>
+      <p xmlns="">열 이름 패턴이 들어 있는 <b> String </b>입니다. 이 매개 변수에 null을 제공하면 각 열에 대한 행이 반환됩니다.</p>
+    </content>
+  </div></div><h1 class="heading">반환 값</h1><div id="returnValueSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 개체입니다.</p>
+    </content>
+  </div><h1 class="heading">예외</h1><div id="exceptionsSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        <a href="af5ef257-7cf6-4db3-b1ee-07d22d82bef1.htm">SQLServerException</a>
+      </p>
+    </content>
+  </div><h1 class="heading">설명</h1><div id="remarksSection" class="section" name="collapseableSection">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">이 <b>getProcedureColumns</b> 메서드는 java.sql.DatabaseMetaData 인터페이스의 <b>getProcedureColumns</b> 메서드에 의해 지정됩니다.</p>
+      <p xmlns=""><b>getProcedureColumns</b> 메서드에서 반환되는 결과 집합에는 다음 정보가 포함됩니다.</p>
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th colspan="">
+              이름
+            </th>
+            <th colspan="">
+              형식
+            </th>
+            <th colspan="">
+              설명
+            </th>
+          </tr><tr>
+          <td colspan="">
+            <p>PROCEDURE_CAT</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>지정된 저장 프로시저가 있는 데이터베이스의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>PROCEDURE_SCHEM</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>저장 프로시저의 스키마입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>PROCEDURE_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>저장 프로시저의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>COLUMN_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>열 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>COLUMN_TYPE</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>short</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>열의 형식입니다. 다음 값 중 하나일 수 있습니다.</p>
+            <p>procedureColumnUnknown(0)</p>
+            <p>procedureColumnIn(1)</p>
+            <p>procedureColumnInOut(2)</p>
+            <p>procedureColumnOut(4)</p>
+            <p>procedureColumnReturn(5)</p>
+            <p>procedureColumnResult(3)</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>DATA_TYPE</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>smallint</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>java.sql.Types의 SQL 데이터 형식입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>TYPE_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>데이터 형식의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>PRECISION</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>총 유효 자릿수입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>LENGTH</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>데이터의 길이(바이트)입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SCALE</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>short</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>소수점 이하 자릿수입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>RADIX</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>short</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>숫자 형식의 기수입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>NULLABLE</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>short</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>열에 null 값이 포함될 수 있는지 여부를 나타냅니다. 다음 값 중 하나일 수 있습니다.</p>
+            <p>procedureNoNulls(0)</p>
+            <p>procedureNullable(1)</p>
+            <p>procedureNullableUnknown(2)</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>REMARKS</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>프로시저 열에 대한 설명입니다.</p>
+            <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+              SQL Server에서는 이 열의 값을 반환하지 않습니다.<p />
+            </div>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>COLUMN_DEF</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>열의 기본값입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SQL_DATA_TYPE</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>smallint</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>이 열은 <b>datetime</b> 및 ISO <b>interval</b> 데이터 형식을 제외하고 <b>DATA_TYPE</b> 열과 동일합니다. </p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SQL_DATETIME_SUB</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>smallint</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p><b>SQL_DATA_TYPE</b>의 값이 <b>SQL_DATETIME</b> 또는 <b>SQL_INTERVAL</b>인 경우 <b>datetime</b> ISO <b>interval</b> 하위 코드입니다. <b>datetime</b> 및 ISO <b>interval</b>이 아닌 데이터 형식인 경우에는 이 열이 NULL입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>CHAR_OCTET_LENGTH</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>열의 최대 바이트 수입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>ORDINAL_POSITION</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>int</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>테이블 내의 열 인덱스입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>IS_NULLABLE</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>열에 null 값을 사용할 수 있는지 여부를 나타냅니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SS_TYPE_CATALOG_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>UDT(사용자 정의 형식)를 포함하는 카탈로그의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SS_TYPE_SCHEMA_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>UDT(사용자 정의 형식)를 포함하는 스키마의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SS_UDT_CATALOG_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>정규화된 이름의 UDT(사용자 정의 형식)입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SS_UDT_SCHEMA_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>XML 스키마 컬렉션 이름이 정의된 카탈로그의 이름입니다. 카탈로그 이름을 찾을 수 없는 경우 이 변수에는 빈 문자열이 포함됩니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SS_UDT_ASSEMBLY_TYPE_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>XML 스키마 컬렉션 이름이 정의된 스키마의 이름입니다. 스키마 이름을 찾을 수 없는 경우 이 변수는 빈 문자열입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SS_XML_SCHEMACOLLECTION_CATALOG_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>XML 스키마 컬렉션의 이름입니다. 이름을 찾을 수 없는 경우 이 변수는 빈 문자열입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SS_XML_SCHEMACOLLECTION_SCHEMA_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>UDT(사용자 정의 형식)를 포함하는 카탈로그의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SS_XML_SCHEMACOLLECTION_NAME</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>String</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>UDT(사용자 정의 형식)를 포함하는 스키마의 이름입니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>SS_DATA_TYPE</p>
+          </td>
+          <td colspan="">
+            <p>
+              <b>tinyint</b>
+            </p>
+          </td>
+          <td colspan="">
+            <p>확장 저장 프로시저에 사용되는 SQL Server 데이터 형식입니다.</p>
+            <div style="margin: .5em 1.5em .5em 1.5em"><b>참고: </b>
+              SQL Server에서 반환하는 데이터 형식에 대한 자세한 내용은 SQL Server 온라인 설명서의 "데이터 형식(Transact-SQL)"을 참조하십시오.<p />
+            </div>
+          </td>
+        </tr></table>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        <b>getProcedureColumns</b> 메서드에서 반환되는 데이터에 대한 자세한 내용은 SQL Server 온라인 설명서의 "sp_sproc_columns(Transact-SQL)"를 참조하십시오.<p />
+      </div>
+    </content>
+  </div><h1 class="heading">예제</h1><div id="codeExampleSection" class="section" name="collapseableSection">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <content>
+        <p xmlns="">다음 예제에서는 <b>getProcedureColumns</b> 메서드를 사용하여 SQL Server 2005 AdventureWorks 샘플 데이터베이스의 uspGetBillOfMaterials 저장 프로시저에 대한 정보를 반환하는 방법을 보여 줍니다.</p>
+      </content>
+    </description>
+    <div class="sampleCode"><span codeLanguage="other"><pre>public static void executeGetProcedureColumns(Connection con) {
+   try {
+      DatabaseMetaData dbmd = con.getMetaData();
+      ResultSet rs = dbmd.getProcedureColumns(null, null, "uspGetBillOfMaterials", null);
+      ResultSetMetaData rsmd = rs.getMetaData();
+
+      // Display the result set data.
+      int cols = rsmd.getColumnCount();
+      while(rs.next()) {
+         for (int i = 1; i &lt;= cols; i++) {
+            System.out.println(rs.getString(i));
+         }
+      }
+      rs.close();
+   } 
+
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}</pre></span></div>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="8b8049d0-8c6d-4476-866b-098709f37eec.htm">SQLServerDatabaseMetaData 클래스</a><br /><a href="327ba0bc-438a-494c-b119-1cd4a096bb58.htm">SQLServerDatabaseMetaData 멤버</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

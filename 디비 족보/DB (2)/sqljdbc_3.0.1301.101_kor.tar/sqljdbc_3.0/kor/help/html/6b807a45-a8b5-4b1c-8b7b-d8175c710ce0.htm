@@ -1,0 +1,105 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>복잡한 문 처리</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">복잡한 문 처리</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>Microsoft SQL Server JDBC 드라이버를 사용하는 경우 런타임에 동적으로 생성되는 문을 포함하여 복잡한 문을 처리해야 할 수 있습니다. 복잡한 문은 대개 업데이트, 삽입 및 삭제를 포함하여 다양한 태스크를 수행합니다. 또한 이러한 유형의 문은 다중 결과 집합과 출력 매개 변수를 반환할 수 있습니다. 이 경우 문을 실행하는 Java 코드에서 반환되는 개체 및 데이터의 형식과 수를 미리 알지 못할 수 있습니다. </p>
+    <p>JDBC 드라이버에서는 복합한 문을 효과적으로 처리하기 위해 반환되는 개체 및 데이터를 쿼리하는 다양한 메서드를 제공하여 응용 프로그램에서 이를 올바르게 처리할 수 있도록 합니다. 복잡한 문을 처리하는 기능의 핵심은 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 클래스의 <a href="e1367f39-23d7-4e26-b160-6d988d7e6988.htm">execute</a> 메서드입니다. 이 메서드는 <b>boolean</b> 값을 반환합니다. 값이 true인 경우 문에서 처음 반환되는 결과는 결과 집합입니다. 값이 false이면 처음 반환되는 결과는 업데이트 횟수입니다.</p>
+    <p>반환된 개체 또는 데이터의 형식을 알고 있으면 <a href="929a14e2-8e98-4c32-89aa-86733c717ec1.htm">getResultSet</a> 또는 <a href="e9570228-4500-44b6-b2f1-84ac050b5112.htm">getUpdateCount</a> 메서드를 사용하여 해당 데이터를 처리할 수 있습니다. 복잡한 문에서 이후에 반환되는 개체 또는 데이터를 처리하는 데는 <a href="df89db50-0b2f-4094-820a-30be25ad72fe.htm">getMoreResults</a> 메서드를 사용합니다.</p>
+    <p>다음 예제에서는 SQL Server 2005 AdventureWorks 샘플 데이터베이스에 대해 열린 연결을 함수로 전달하고, 저장 프로시저 호출과 SQL 문이 결합된 복잡한 문을 생성하여 실행한 다음, <code>do</code> 루프를 사용하여 반환되는 모든 결과 집합 및 업데이트 횟수를 처리합니다.</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>public static void executeComplexStatement(Connection con) {
+   try {
+      String sqlStringWithUnknownResults = "{call dbo.uspGetEmployeeManagers(50)};SELECT TOP 10 * FROM Person.Contact";
+      Statement stmt = con.createStatement();
+      boolean results = stmt.execute(sqlStringWithUnknownResults);
+      int count = 0;
+      do {
+         if (results) {
+            ResultSet rs = stmt.getResultSet();
+            System.out.println("Result set data displayed here.");
+            rs.close();
+         } else {
+            count = stmt.getUpdateCount();
+            if (count &gt;= 0) {
+               System.out.println("DDL or update data displayed here.");
+            } else {
+               System.out.println("No more results to process.");
+            }
+         }
+         results = stmt.getMoreResults();
+      } while (results || count != -1);
+      stmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span></div>
+  </div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="7f8f3e8f-841e-4449-9154-b5366870121f.htm">JDBC 드라이버에서 문 사용</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

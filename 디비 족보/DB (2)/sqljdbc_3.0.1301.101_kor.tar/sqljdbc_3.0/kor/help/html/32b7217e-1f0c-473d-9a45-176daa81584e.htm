@@ -1,0 +1,106 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>XML 데이터 지원</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">XML 데이터 지원</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>SQL Server 2005 이상의 SQL Server에서는 XML 문서 및 조각을 SQL Server 데이터베이스에 저장하는 데 사용할 수 있는 <b>xml</b> 데이터 형식을 제공합니다. <b>xml</b> 데이터 형식은 SQL Server의 기본 제공 데이터 형식이며 <b>int</b> 및 <b>varchar</b>와 같은 다른 기본 제공 유형과 비슷합니다. 다른 기본 제공 유형과 마찬가지로 <b>xml</b> 데이터 형식을 변수 유형, 매개 변수 유형, 함수 반환 유형 또는 테이블을 만들 때 열 유형으로 사용하거나 Transact-SQL CAST 및 CONVERT 함수에서 사용할 수 있습니다. JDBC 드라이버에서 <b>xml</b> 데이터 형식은 문자열, 바이트 배열, 스트림, CLOB, BLOB 또는 SQLXML 개체로 매핑될 수 있습니다. 기본 매핑은 문자열입니다. </p>
+    <p>Microsoft SQL Server JDBC 드라이버 버전 2.0 이상에서는 SQLXML 인터페이스가 추가된 JDBC 4.0 API가 지원됩니다. SQLXML 인터페이스는 XML 데이터에 대한 상호 작용 및 조작을 수행하는 메서드를 정의합니다. <b>SQLXML</b>은 JDBC 4.0 데이터 형식이며 SQL Server <b>xml</b> 데이터 형식에 매핑됩니다. 따라서 응용 프로그램에서 SQLXML 데이터 형식을 사용하려면 sqljdbc4.jar 파일을 포함하도록 클래스 경로를 설정해야 합니다. 응용 프로그램에서 SQLXML 개체 및 해당 메서드에 액세스할 때 sqljdbc3.jar를 사용하려고 시도하면 예외가 발생합니다.</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>중요: </b>
+      SQL Server는 XML 데이터를 데이터베이스 열에 저장하기 전에 항상 해당 데이터의 유효성을 검사합니다. SQL Server 2005 이상에서 실행되는 응용 프로그램은 <b>SQLXML</b> 데이터 형식을 사용할 수 있는데 그 이유는 JDBC 드라이버 버전 2.0에서 이 데이터 형식을 자동으로 <b>xml</b> 데이터 형식에 매핑하기 때문입니다. 그러나 SQL Server 2000에서 <b>SQLXML</b> 데이터 형식을 사용하면 예외가 발생합니다. <b>SQLXML</b>은 sqljdbc4.jar에서 지원되는데 이 라이브러리는 JRE(Java Runtime Environment) 6.0 이상에서만 작동합니다.<p />
+    </div>
+    <p>이 섹션의 항목에서는 SQLXML 인터페이스에 대해 설명하고, JDBC API 메서드를 사용하여 <b>SQLXML</b> 데이터 형식에 대한 프로그램을 작성하는 방법에 대해 설명합니다. </p>
+  </div><h1 class="heading">섹션 내용</h1><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th colspan="">
+              항목
+            </th>
+            <th colspan="">
+              설명
+            </th>
+          </tr><tr>
+          <td colspan="">
+            <p>
+              <a href="7c67be98-efb5-446c-a0e3-ee67c43cb170.htm">SQLXML 인터페이스</a>
+            </p>
+          </td>
+          <td colspan="">
+            <p>SQLXML 인터페이스 및 해당 메서드에 대해 설명합니다.</p>
+          </td>
+        </tr><tr>
+          <td colspan="">
+            <p>
+              <a href="4d2cc57c-7293-4d92-b8b1-525e2b35f591.htm">SQLXML을 사용한 프로그래밍</a>
+            </p>
+          </td>
+          <td colspan="">
+            <p>Microsoft SQL Server JDBC 드라이버 API 메서드를 사용하여 <b>SQLXML</b> Java 데이터 형식으로 관계형 데이터베이스에 XML 데이터를 저장 및 검색하는 방법에 대해 설명합니다. 또한 SQLXML 개체 유형에 대한 정보 및 SQLXML 개체 사용과 관련된 중요한 지침 및 제한 사항이 포함되어 있습니다.</p>
+          </td>
+        </tr></table>
+    </content></div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="7802328d-4d23-4775-9573-4169b127d258.htm">JDBC 드라이버 데이터 형식 이해</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>

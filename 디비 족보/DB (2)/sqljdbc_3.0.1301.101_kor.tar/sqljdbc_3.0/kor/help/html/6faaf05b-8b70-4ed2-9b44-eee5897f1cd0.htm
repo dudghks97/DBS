@@ -1,0 +1,121 @@
+﻿<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8" />
+    <META NAME="save" CONTENT="history" />
+    <title>JDBC 드라이버 사용</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script.js">
+      
+    </script><script src="../local/script_main.js">&amp;nbsp;</script>
+  </head>
+  <body>
+    <!--Topic built:04/01/2010 05:03:28-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="header">
+      <table width="100%" id="topTable"><tr>
+          <td align="left">
+            <span id="headerBold">JDBC 드라이버 사용</span>
+          </td>
+          <td align="right">
+            
+          </td>
+        </tr></table>
+      
+      
+      
+    </div>
+    <div id="mainSection">
+      
+        
+        
+    <font color="DarkGray">
+      
+    </font>
+    <p />
+    
+    <p />
+  
+        <div id="introductionSection" class="section">
+    <p>이 섹션에서는 Microsoft SQL Server JDBC 드라이버를 사용하여 SQL Server 데이터베이스에 손쉽게 연결하는 방법에 대해 간략하게 설명합니다. SQL Server 데이터베이스에 연결하려면 먼저 로컬 컴퓨터 또는 서버에 SQL Server를 설치하고 로컬 컴퓨터에 JDBC 드라이버를 설치해야 합니다. </p>
+  </div><h1 class="heading">올바른 JAR 파일 선택</h1><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Microsoft SQL Server JDBC 드라이버는 기본 설정된 JRE(Java Runtime Environment)에 따라 사용할 수 있는 <b>sqljdbc.jar</b> 및 <b>sqljdbc4.jar</b> 클래스 라이브러리 파일을 제공합니다. JAR 파일 선택에 대한 자세한 내용은 <a href="447792bb-f39b-49b4-9fd0-1ef4154c74ab.htm">JDBC 드라이버 시스템 요구 사항</a>을 참조하십시오.</p>
+    </content></div><h1 class="heading">클래스 경로 설정</h1><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">JDBC 드라이버는 Java SDK에 포함되어 있지 않습니다. JDBC 드라이버를 사용하려면 sqljdbc.jar 파일 또는 sqljdbc4.jar 파일을 포함하도록 클래스 경로를 설정해야 합니다. 클래스 경로에 sqljdbc.jar 파일 또는 sqljdbc4.jar 파일에 대한 항목이 없으면 응용 프로그램에서 일반적인 "클래스를 찾을 수 없습니다." 예외가 발생합니다.</p>
+      <p xmlns="">sqljdbc.jar 및 sqljdbc4.jar 파일은 다음 위치에 설치되어 있습니다.</p>
+      <p xmlns="">&lt;<i>installation directory</i>&gt;\sqljdbc_&lt;<i>version</i>&gt;\&lt;<i>language</i>&gt;\sqljdbc.jar</p>
+      <p xmlns="">&lt;<i>installation directory</i>&gt;\sqljdbc_&lt;<i>version</i>&gt;\&lt;<i>language</i>&gt;\sqljdbc4.jar</p>
+      <p xmlns="">다음은 Windows 응용 프로그램에 사용되는 CLASSPATH 문의 예입니다.</p>
+      <p xmlns="">
+        <code>CLASSPATH =.;C:\Program Files\Microsoft SQL Server JDBC Driver\sqljdbc_3.0\enu\sqljdbc.jar</code>
+      </p>
+      <p xmlns="">다음은 Unix/Linux 응용 프로그램에 사용되는 CLASSPATH 문의 예입니다.</p>
+      <p xmlns="">
+        <code>CLASSPATH =.:/home/usr1/mssqlserverjdbc/Driver/sqljdbc_3.0/enu/sqljdbc.jar</code>
+      </p>
+      <p xmlns="">CLASSPATH 문에는 sqljdbc.jar 또는 sqljdbc4.jar와 같은 Microsoft SQL Server JDBC 드라이버가 하나만 포함되어 있어야 합니다.</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        Windows 시스템의 경우 디렉터리 이름이 8.3자보다 길거나 폴더 이름에 공백이 있으면 클래스 경로에 문제가 발생할 수 있습니다. 이러한 유형의 문제가 있는 것으로 의심되면 sqljdbc.jar 파일 또는 sqljdbc4.jar 파일을<code> C:\Temp</code> 같은 단순한 이름의 디렉터리로 일시적으로 이동하고 클래스 경로를 변경한 다음 문제가 해결되는지 확인합니다.<p />
+      </div>
+    </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h1 class="heading" xmlns="">명령 프롬프트에서 바로 실행되는 응용 프로그램</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">클래스 경로는 운영 체제에 구성되어 있습니다. sqljdbc.jar 또는 sqljdbc4.jar를 시스템의 클래스 경로에 추가합니다. 응용 프로그램을 실행하는 Java 명령줄에서 <code> java -classpath </code> 옵션을 사용하여 클래스 경로를 지정할 수도 있습니다.</p>
+        </content></div>
+      <h1 class="heading" xmlns="">IDE에서 실행되는 응용 프로그램</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">IDE 공급업체마다 자체 IDE에 클래스 경로를 설정하기 위한 서로 다른 메서드를 제공합니다. 운영 체제에서 클래스 경로를 설정하는 것만으로는 올바르게 작동하지 않습니다. sqljdbc.jar 또는 sqljdbc4.jar를 IDE 클래스 경로에 추가해야 합니다.</p>
+        </content></div>
+      <h1 class="heading" xmlns="">Servlet 및 JSP</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Servlet과 JSP는 Tomcat 같은 servlet/JSP 엔진에서 실행됩니다. 클래스 경로는 servlet/JSP 엔진 설명서에 따라 설정해야 합니다. 운영 체제에서 클래스 경로를 설정하는 것만으로는 올바르게 작동하지 않습니다. 일부 servlet/JSP 엔진은 설치 화면을 통해 엔진의 클래스 경로를 설정할 수 있습니다. 이 경우 올바른 JDBC 드라이버 JAR 파일을 기존 엔진 클래스 경로에 추가하고 엔진을 다시 시작해야 합니다. 경우에 따라 엔진을 설치하는 동안 sqljdbc.jar 또는 sqljdbc4.jar 파일을 lib 같은 특정 디렉터리에 복사하여 드라이버를 배포할 수 있습니다. 엔진 드라이버의 클래스 경로는 엔진의 특정 구성 파일에 지정할 수도 있습니다.</p>
+        </content></div>
+      <h1 class="heading" xmlns="">Enterprise Java Beans</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">EJB(Enterprise Java Bean)는 EJB 컨테이너에서 실행됩니다. EJB 컨테이너는 다양한 공급업체에서 제공합니다. Java 애플릿은 브라우저에서 실행되지만 웹 서버에서 다운로드합니다. sqljdbc.jar 또는 sqljdbc4.jar를 웹 서버 루트에 복사하고 <code>&lt;applet ... archive=sqljdbc.jar&gt;</code> 같이 애플릿의 HTML 보관 탭에 JAR 파일의 이름을 지정합니다.</p>
+        </content></div>
+    </sections></div><h1 class="heading">데이터베이스에 대해 단순한 연결 만들기</h1><div id="sectionSection2" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">응용 프로그램은 sqljdbc.jar 클래스 라이브러리를 사용하여 먼저 다음과 같이 드라이버를 등록해야 합니다.</p>
+      <p xmlns="">
+        <code>Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");</code>
+      </p>
+      <p xmlns="">드라이버가 로드되면 다음과 같이 연결 URL 및 <b>DriverManager</b> 클래스의 <b>getConnection</b> 메서드를 사용하여 연결을 설정할 수 있습니다.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>String connectionUrl = "jdbc:sqlserver://localhost:1433;" +
+   "databaseName=AdventureWorks;user=MyUserName;password=*****;";
+Connection con = DriverManager.getConnection(connectionUrl);</pre></span></div>
+      <p xmlns="">JDBC API 4.0에서는 JDBC 드라이버를 자동으로 로드할 수 있도록 <b>DriverManager.getConnection</b> 메서드가 개선되었습니다. 따라서 응용 프로그램은 sqljdbc4.jar 클래스 라이브러리를 사용할 때 드라이버를 등록하거나 로드하기 위해 <b>Class.forName</b> 메서드를 호출할 필요가 없습니다.</p>
+      <p xmlns=""><b>DriverManager</b> 클래스의 <b>getConnection</b> 메서드가 호출되면 등록된 JDBC 드라이버 집합에서 적합한 드라이버가 검색됩니다. sqljdbc4.jar 파일에는 <b>com.microsoft.sqlserver.jdbc.SQLServerDriver</b>를 등록된 드라이버로 포함하는 "META-INF/services/java.sql.Driver" 파일이 들어 있습니다. 현재 <b>Class.forName</b> 메서드를 사용하여 드라이버를 로드하는 기존 응용 프로그램은 수정하지 않아도 계속 작동합니다.</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>참고: </b>
+        sqljdbc4.jar 클래스 라이브러리에는 JRE(Java Runtime Environment) 버전 6.0 이상이 필요합니다.<p />
+      </div>
+      <p xmlns="">데이터 원본 연결 방법 및 연결 URL 사용 방법은 <a href="44996746-d373-4f59-9863-a8a20bb8024a.htm">연결 URL 작성</a> 및 <a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">연결 속성 설정</a>을 참조하십시오.</p>
+    </content></div><span id="seeAlsoSpan"><h1 class="heading">참고 항목</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection"><a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">JDBC 드라이버 개요</a><br /><br /></div><!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/><tool:tip element="roleInfoSpan" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        
+		<hr />
+		
+		<span id="fb" class="feedbackcss">
+			
+			
+		</span>
+		
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2010 Microsoft Corporation. 모든 권리 보유.
+		</a>
+ 	
+	
+      </div>
+    </div>
+  </body>
+</html>
